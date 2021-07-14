@@ -52,6 +52,8 @@ public class GameManager {
         else{
             System.out.println("실패입니다.");
         }
+        
+        askDoRestart();
     }
     //------------------------------------------------------------------------//
     //
@@ -134,6 +136,22 @@ public class GameManager {
     }
     public int getBall(){
         return 0;
+    }
+
+    private void askDoRestart() {
+        System.out.println("다시 하시겠습니다? (y/n)");
+        Scanner sc = new Scanner(System.in);
+        char input = sc.next().charAt(0);
+        
+        if(input == 'y' || input == 'Y'){
+            gameStart();
+        }
+        else if(input == 'n' || input == 'N'){
+            
+        }
+        else{
+            askDoRestart();
+        }
     }
 
     
