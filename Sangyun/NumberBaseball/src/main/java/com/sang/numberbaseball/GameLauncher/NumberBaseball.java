@@ -10,5 +10,8 @@ package com.sang.numberbaseball.GameLauncher;
  * @author ssy02
  */
 public class NumberBaseball {
-    
+    public static void main(String[] args){
+        GameManager gm = new GameManager();
+        gm.play();
+    }
 }
