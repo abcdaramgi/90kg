@@ -31,7 +31,7 @@ public class GameManager {
     }
     //------------------------------------------------------------------------//
     // 메서드
-    public void play(){
+    public void gameStart(){
         System.out.println("사용자 번호를 입력하세요.");
         setUserNumber();
         System.out.println("라이프를 입력하세요.");

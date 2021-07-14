@@ -12,6 +12,6 @@ package com.sang.numberbaseball.GameLauncher;
 public class NumberBaseball {
     public static void main(String[] args){
         GameManager gm = new GameManager();
-        gm.play();
+        gm.gameStart();
     }
 }
