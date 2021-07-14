@@ -31,13 +31,13 @@ public class GameManager {
     // 메서드
     public void play(){
         System.out.println("라이프를 입력하세요.");
-        Scanner sc = new Scanner(System.in);
-        life = sc.nextInt();
-        
+        setlife();
+        System.out.println("숫자야구 시작");
         while(isRight == false){
             setInputNumber();
             isRight = getIsRight(targetNumber, inputNumber);
             life--;
+            System.out.println("다시 시도해보세요");
             if(life==0)
                 break;
         }
@@ -50,9 +50,14 @@ public class GameManager {
             System.out.println("실패입니다.");
         }
     }
-    public void manual(){
+    
+    
+    
+    /* public void manual(){
         
-    }
+    } */
+    
+    
     public int getRandomNumber(){
         int randomNumber= (int) (Math.random()*10);
         
@@ -66,9 +71,26 @@ public class GameManager {
             return false;
     }
     public void setInputNumber(){
-        Scanner sc = new Scanner(System.in);
-        inputNumber = sc.nextInt();
+        try{
+            Scanner sc = new Scanner(System.in);
+            inputNumber = sc.nextInt();
+        }catch(java.lang.RuntimeException e){
+            System.out.println("입력값이 잘못되었습니다.");
+            setInputNumber();
+        }
     }
+    public void setlife(){
+        try{
+            Scanner sc = new Scanner(System.in);
+             life = sc.nextInt();
+        }catch(java.lang.RuntimeException e){
+            System.out.println("입력한 라이프 값이 잘못되었습니다");
+            setlife();
+        }
+        
+    }
+    
+    /* 미완성
     public int getStrike(){
         
         return 0;
@@ -76,6 +98,7 @@ public class GameManager {
     public int getBall(){
         return 0;
     }
+    */
 }
     
     
