@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public class Debug {
     private static Debug instance = new Debug();
-    static boolean  DEBUG = true;
+    static private boolean  DEBUG = true;
     
     //------------------------------------------------------------------------//
     //
@@ -24,14 +24,13 @@ public class Debug {
         return instance;
     }
     //------------------------------------------------------------------------//
-    //
+    // at com.sang.numberbaseball.GameLauncher.GameManager.play(GameManager.java:38)
     //------------------------------------------------------------------------//
     public static void log(String message){
         if(DEBUG){
-            String callInfo = getClassName() + "." + getMethodName() + getFileName();
+            String callInfo = getClassName() + ".java:[" + getLineNumber() +",0]";
             System.out.println(callInfo + " "+ getTime() + " : " + message);
         }
-        
     }
     //------------------------------------------------------------------------//
     // test 후 private으로
@@ -54,15 +53,15 @@ public class Debug {
     private static String getFileName(){
         String fileName = (new Throwable()).getStackTrace()[2].getFileName();
         
-        return fileName + ":" + getLineNumber();
+        return "(" + fileName + ":" + getLineNumber() + ")";
     }
     //------------------------------------------------------------------------//
-    //
     //------------------------------------------------------------------------//
     private static String getClassName(){
         String className = (new Throwable()).getStackTrace()[2].getClassName();
+        String generatedClassName = className.replace(".", "/");
 
-        return className;
+        return generatedClassName;
     }
     //------------------------------------------------------------------------//
     //
@@ -70,6 +69,12 @@ public class Debug {
     private static String getMethodName(){
         String methodName = (new Throwable()).getStackTrace()[2].getMethodName();
 
-        return methodName;
+        return methodName + "()";
+    }
+    //------------------------------------------------------------------------//
+    //
+    //------------------------------------------------------------------------//
+    public static void setIsDebug(boolean isDebug){
+        DEBUG = isDebug;
     }
 }
