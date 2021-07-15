@@ -32,14 +32,25 @@ public class GameManager {
     public void play(){
         System.out.println("라이프를 입력하세요.");
         setlife();
+        if(life==0){
+            System.out.println("최소 LIFE는 1이상 입니다");
+            setlife();
+        }
         System.out.println("숫자야구 시작");
+        
         while(isRight == false){
-            setInputNumber();
+            do{
+                System.out.println("10이하의 정수를 입력하세요");
+                setInputNumber();
+            }while(inputNumber>9);
+            
             isRight = getIsRight(targetNumber, inputNumber);
             life--;
-            System.out.println("다시 시도해보세요");
+            if(isRight==true)
+                break;
             if(life==0)
                 break;
+            System.out.println("다시 시도해보세요");
         }
         
         if(isRight == true){
@@ -70,15 +81,17 @@ public class GameManager {
         else
             return false;
     }
+    
     public void setInputNumber(){
         try{
             Scanner sc = new Scanner(System.in);
             inputNumber = sc.nextInt();
         }catch(java.lang.RuntimeException e){
-            System.out.println("입력값이 잘못되었습니다.");
+            System.out.println("입력값이 잘못되었습니다. 정수를 입력하세요.");
             setInputNumber();
-        }
+            }
     }
+    
     public void setlife(){
         try{
             Scanner sc = new Scanner(System.in);
@@ -87,8 +100,8 @@ public class GameManager {
             System.out.println("입력한 라이프 값이 잘못되었습니다");
             setlife();
         }
-        
     }
+    
     
     /* 미완성
     public int getStrike(){
