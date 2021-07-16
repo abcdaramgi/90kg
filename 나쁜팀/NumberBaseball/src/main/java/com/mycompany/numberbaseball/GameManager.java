@@ -5,13 +5,8 @@
  */
 package com.mycompany.numberbaseball;
 
-import static java.sql.DriverManager.println;
 import java.util.Scanner;
 
-/**
- *
- * @author ASUS
- */
 public class GameManager {
     //------------------------------------------------------------------------//
     // 인스턴스 변수
@@ -72,14 +67,7 @@ public class GameManager {
             System.out.println("실패입니다.");
         }
     }
-    
-    
-    
-    /* public void manual(){
-        
-    } */
-    
-    
+
     public int getRandomNumber(){
         int randomNumber= (int) (Math.random()*10);
         
@@ -94,11 +82,9 @@ public class GameManager {
     }
     
     public void setInputNumber(){
-<<<<<<< HEAD
+
         System.out.println("예상 숫자를 입력하세요 : ");
-        Scanner sc = new Scanner(System.in);
-        inputNumber = sc.nextInt();
-=======
+
         try{
             Scanner sc = new Scanner(System.in);
             inputNumber = sc.nextInt();
@@ -116,27 +102,24 @@ public class GameManager {
             System.out.println("입력한 라이프 값이 잘못되었습니다");
             setlife();
         }
->>>>>>> 2435832be52f1442dd640e227a5d0f20e2108ab7
     }
     
     
-    /* 미완성
+    
     public int getStrike(){
         
         return 0;
     }
     public int getBall(){
+        
         return 0;
-    }
-<<<<<<< HEAD
+    }    
+    
     public void UserNumber(){
         System.out.println("회원넘버를 입력하세요.");
         Scanner sc = new Scanner(System.in);
         usernumber = sc.nextInt();
     }
-=======
-    */
->>>>>>> 2435832be52f1442dd640e227a5d0f20e2108ab7
 }
     
     
