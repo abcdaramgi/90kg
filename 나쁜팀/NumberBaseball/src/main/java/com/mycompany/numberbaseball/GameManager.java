@@ -5,6 +5,7 @@
  */
 package com.mycompany.numberbaseball;
 
+import static java.sql.DriverManager.println;
 import java.util.Scanner;
 
 /**
@@ -18,6 +19,7 @@ public class GameManager {
     int life;
     int targetNumber;
     int inputNumber;
+    int usernumber;
     //------------------------------------------------------------------------//
     //생성자
     //객체를 생성시키는 놈이라고도 설명 가능
@@ -30,6 +32,15 @@ public class GameManager {
     //------------------------------------------------------------------------//
     // 메서드
     public void play(){
+        
+        UserNumber();
+        if(usernumber == 0){
+            System.out.println("개발자로 접속하셨습니다.");
+            System.out.println("랜덤 숫자= "+targetNumber);
+        }
+        else
+            System.out.println("사용자로 접속하셨습니다.");
+        
         System.out.println("라이프를 입력하세요.");
         Scanner sc = new Scanner(System.in);
         life = sc.nextInt();
@@ -66,6 +77,7 @@ public class GameManager {
             return false;
     }
     public void setInputNumber(){
+        System.out.println("예상 숫자를 입력하세요 : ");
         Scanner sc = new Scanner(System.in);
         inputNumber = sc.nextInt();
     }
@@ -75,6 +87,11 @@ public class GameManager {
     }
     public int getBall(){
         return 0;
+    }
+    public void UserNumber(){
+        System.out.println("회원넘버를 입력하세요.");
+        Scanner sc = new Scanner(System.in);
+        usernumber = sc.nextInt();
     }
 }
     
