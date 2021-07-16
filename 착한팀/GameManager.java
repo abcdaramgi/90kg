@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class GameManager {
     //------------------------------------------------------------------------//
     // 인스턴스 변수
+    int id;
     boolean isRight = false;
     int life;
     int targetNumber;
@@ -26,23 +27,54 @@ public class GameManager {
     //------------------------------------------------------------------------//
     // 메서드
     public void play(){
-        System.out.println("라이프를 입력하세요.");
-        setLife();
-        // 라이프 수 만큼 입력을 받을 수 있고,
-        // 라이프 수가 다따르기 전에 답을 맞추면 성공
-        // 라이프 수가 다딸라도 못맞추면 실패
-        while(isRight==false){
-            System.out.println("예상숫자를 입력하세요.");
-            setInputNumber();
-            isRight=getIsRight(targetNumber, inputNumber);
-            life--;
+        System.out.println("회원 번호를 입력하세요");
+        setId();
+        if(id==0)
+        {
+            System.out.println("개발자모드로 진행합니다");
+            System.out.println("targetNumber = "+targetNumber);
+            System.out.println("라이프를 입력하세요.");
+            setLife();
+            // 라이프 수 만큼 입력을 받을 수 있고,
+            // 라이프 수가 다따르기 전에 답을 맞추면 성공
+            // 라이프 수가 다딸라도 못맞추면 실패
+            while(isRight==false){
+                System.out.println("targetNumber = "+targetNumber);
+                System.out.println("남은 횟수 = "+life);
+                System.out.println("예상숫자를 입력하세요.");
+                setInputNumber();
+                isRight=getIsRight(targetNumber, inputNumber);
+                life--;
+                if(life==0)
+                    break;
+            }
             if(life==0)
-                break;
-        }
-        if(life==0)
                 System.out.println("실패");
             else
                 System.out.println("성공");
+        }
+    
+    else
+        {
+            System.out.println("사용자모드로 진행합니다");
+            System.out.println("라이프를 입력하세요.");
+            setLife();
+            // 라이프 수 만큼 입력을 받을 수 있고,
+            // 라이프 수가 다따르기 전에 답을 맞추면 성공
+            // 라이프 수가 다딸라도 못맞추면 실패
+            while(isRight==false){
+                System.out.println("예상숫자를 입력하세요.");
+                setInputNumber();
+                isRight=getIsRight(targetNumber, inputNumber);
+                life--;
+                if(life==0)
+                    break;
+            }
+            if(life==0)
+                System.out.println("실패");
+            else
+                System.out.println("성공");
+        }
     }
     //------------------------------------------------------------------------//
     public void manual(){
@@ -60,7 +92,10 @@ public class GameManager {
     public void setLife(){
         Scanner sl = new Scanner(System.in);
             this.life = sl.nextInt();
-        
+    }
+    public void setId(){
+        Scanner sc = new Scanner(System.in);
+            this.id = sc.nextInt();
     }
     public void setInputNumber(){
         Scanner in = new Scanner(System.in);
