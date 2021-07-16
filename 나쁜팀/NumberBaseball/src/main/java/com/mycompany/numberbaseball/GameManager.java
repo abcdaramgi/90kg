@@ -42,15 +42,26 @@ public class GameManager {
             System.out.println("사용자로 접속하셨습니다.");
         
         System.out.println("라이프를 입력하세요.");
-        Scanner sc = new Scanner(System.in);
-        life = sc.nextInt();
+        setlife();
+        if(life==0){
+            System.out.println("최소 LIFE는 1이상 입니다");
+            setlife();
+        }
+        System.out.println("숫자야구 시작");
         
         while(isRight == false){
-            setInputNumber();
+            do{
+                System.out.println("10이하의 정수를 입력하세요");
+                setInputNumber();
+            }while(inputNumber>9);
+            
             isRight = getIsRight(targetNumber, inputNumber);
             life--;
+            if(isRight==true)
+                break;
             if(life==0)
                 break;
+            System.out.println("다시 시도해보세요");
         }
         
         if(isRight == true){
@@ -61,9 +72,14 @@ public class GameManager {
             System.out.println("실패입니다.");
         }
     }
-    public void manual(){
+    
+    
+    
+    /* public void manual(){
         
-    }
+    } */
+    
+    
     public int getRandomNumber(){
         int randomNumber= (int) (Math.random()*10);
         
@@ -76,11 +92,35 @@ public class GameManager {
         else
             return false;
     }
+    
     public void setInputNumber(){
+<<<<<<< HEAD
         System.out.println("예상 숫자를 입력하세요 : ");
         Scanner sc = new Scanner(System.in);
         inputNumber = sc.nextInt();
+=======
+        try{
+            Scanner sc = new Scanner(System.in);
+            inputNumber = sc.nextInt();
+        }catch(java.lang.RuntimeException e){
+            System.out.println("입력값이 잘못되었습니다. 정수를 입력하세요.");
+            setInputNumber();
+            }
     }
+    
+    public void setlife(){
+        try{
+            Scanner sc = new Scanner(System.in);
+             life = sc.nextInt();
+        }catch(java.lang.RuntimeException e){
+            System.out.println("입력한 라이프 값이 잘못되었습니다");
+            setlife();
+        }
+>>>>>>> 2435832be52f1442dd640e227a5d0f20e2108ab7
+    }
+    
+    
+    /* 미완성
     public int getStrike(){
         
         return 0;
@@ -88,11 +128,15 @@ public class GameManager {
     public int getBall(){
         return 0;
     }
+<<<<<<< HEAD
     public void UserNumber(){
         System.out.println("회원넘버를 입력하세요.");
         Scanner sc = new Scanner(System.in);
         usernumber = sc.nextInt();
     }
+=======
+    */
+>>>>>>> 2435832be52f1442dd640e227a5d0f20e2108ab7
 }
     
     
