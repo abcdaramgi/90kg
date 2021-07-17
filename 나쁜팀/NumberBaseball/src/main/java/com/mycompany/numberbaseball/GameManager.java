@@ -82,9 +82,13 @@ public class GameManager {
     }
     
     public void setInputNumber(){
+<<<<<<< Updated upstream
 
         System.out.println("예상 숫자를 입력하세요 : ");
 
+=======
+        System.out.println("예상 숫자를 입력하세요 : ");
+>>>>>>> Stashed changes
         try{
             Scanner sc = new Scanner(System.in);
             inputNumber = sc.nextInt();
@@ -109,12 +113,17 @@ public class GameManager {
     public int getStrike(){
         
         return 0;
-    }
+    }*/
+
     public int getBall(){
         
         return 0;
+<<<<<<< Updated upstream
     }    
     
+=======
+    }
+>>>>>>> Stashed changes
     public void UserNumber(){
         System.out.println("회원넘버를 입력하세요.");
         Scanner sc = new Scanner(System.in);
