@@ -37,11 +37,12 @@ public class GameManager {
             System.out.println("사용자로 접속하셨습니다.");
         
         System.out.println("라이프를 입력하세요.");
-        setlife();
-        if(life==0){
+        
+        do{
             System.out.println("최소 LIFE는 1이상 입니다");
             setlife();
-        }
+        }while(life<=0);
+        
         System.out.println("숫자야구 시작");
         
         while(isRight == false){
@@ -82,13 +83,7 @@ public class GameManager {
     }
     
     public void setInputNumber(){
-<<<<<<< Updated upstream
-
-        System.out.println("예상 숫자를 입력하세요 : ");
-
-=======
-        System.out.println("예상 숫자를 입력하세요 : ");
->>>>>>> Stashed changes
+        System.out.println("예상 숫자를 입력하세요");
         try{
             Scanner sc = new Scanner(System.in);
             inputNumber = sc.nextInt();
@@ -113,17 +108,13 @@ public class GameManager {
     public int getStrike(){
         
         return 0;
-    }*/
+    }
 
     public int getBall(){
         
         return 0;
-<<<<<<< Updated upstream
     }    
     
-=======
-    }
->>>>>>> Stashed changes
     public void UserNumber(){
         System.out.println("회원넘버를 입력하세요.");
         Scanner sc = new Scanner(System.in);
