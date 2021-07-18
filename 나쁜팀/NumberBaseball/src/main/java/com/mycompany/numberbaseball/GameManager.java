@@ -116,9 +116,16 @@ public class GameManager {
     }    
     
     public void UserNumber(){
-        System.out.println("회원넘버를 입력하세요.");
-        Scanner sc = new Scanner(System.in);
-        usernumber = sc.nextInt();
+        try{
+            do{
+                System.out.println("회원넘버를 입력하세요.");
+                Scanner sc = new Scanner(System.in);
+                usernumber = sc.nextInt();
+            }while(usernumber<0);
+        }catch(java.lang.RuntimeException e){
+            System.out.println("회원정보 입력 오류");
+            UserNumber();
+        }
     }
 }
     
