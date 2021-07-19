@@ -124,8 +124,25 @@ public class GameManager {
     //
     //------------------------------------------------------------------------//
     public void setInputNumber(){
+        System.out.println("예상 숫자를 입력하세요.");
+        int input = getInteger();
+        inputNumber = input;
+    }
+    //------------------------------------------------------------------------//
+    //
+    //------------------------------------------------------------------------//
+    private int getInteger(){
         Scanner sc = new Scanner(System.in);
-        inputNumber = sc.nextInt();
+        int input = 0;
+        try{
+            input = sc.nextInt();
+        }catch (InputMismatchException exception) {
+            System.out.println("정수만 입력 가능합니다.");
+            sc = new Scanner(System.in);
+            input = sc.nextInt();
+        }
+        
+        return input;
     }
     //------------------------------------------------------------------------//
     //
