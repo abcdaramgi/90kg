@@ -6,6 +6,7 @@
 package com.sang.numberbaseball.GameLauncher;
 
 import Util.Debug;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -14,7 +15,12 @@ import java.util.Scanner;
  */
 public class GameManager {
     //------------------------------------------------------------------------//
+    // 상수
+    
+    //------------------------------------------------------------------------//
     // 인스턴스 변수
+    
+    
     boolean isRight = false;
     int life;
     int targetNumber;
@@ -32,52 +38,50 @@ public class GameManager {
     //------------------------------------------------------------------------//
     // 메서드
     public void gameStart(){
-        System.out.println("사용자 번호를 입력하세요.");
         setUserNumber();
-        System.out.println("라이프를 입력하세요.");
         setLife();
         
-        while(!isRight && life != 0){
-            System.out.println("예상 숫자를 입력하세요.");
+        while(!isRight && life > 0){
             setInputNumber();
             isRight = getIsRight(targetNumber, inputNumber);
             printStatus();
             printResult(isRight);
             life--;
         }
-        
+        printIsSuccess();
+        askDoRestart();
+    }
+    //------------------------------------------------------------------------//
+    //
+    //------------------------------------------------------------------------//
+    private void printIsSuccess(){
         if(isRight){
             System.out.println("성공입니다.");
         }
         else{
             System.out.println("실패입니다.");
         }
-        
-        askDoRestart();
     }
     //------------------------------------------------------------------------//
     //
     //------------------------------------------------------------------------//
     private void setUserNumber(){
-        Scanner sc = new Scanner(System.in);
-        userNumber = sc.nextInt();
+        System.out.println("사용자 번호를 입력하세요.");
+        userNumber = getInteger();
         setIsDebug(userNumber);
     }
     //------------------------------------------------------------------------//
     //
     //------------------------------------------------------------------------//
     private void setIsDebug(int userNumber){
-        if(userNumber == 0)
-            Debug.setIsDebug(true);
-        else
-            Debug.setIsDebug(false);
+        Debug.setIsDebug(userNumber == 0);
     }
     //------------------------------------------------------------------------//
     //
     //------------------------------------------------------------------------//
     private void setLife(){
-        Scanner sc = new Scanner(System.in);
-        life = sc.nextInt();
+        System.out.println("라이프를 입력하세요.");
+        life = getInteger();
     }
     //------------------------------------------------------------------------//
     //
@@ -154,7 +158,9 @@ public class GameManager {
     public int getBall(){
         return 0;
     }
-
+    //------------------------------------------------------------------------//
+    //
+    //------------------------------------------------------------------------//
     private void askDoRestart() {
         System.out.println("다시 하시겠습니다? (y/n)");
         Scanner sc = new Scanner(System.in);
@@ -170,6 +176,10 @@ public class GameManager {
             askDoRestart();
         }
     }
-
-    
+    //------------------------------------------------------------------------//
+    //
+    //------------------------------------------------------------------------//
+    private void checkInputNumberSize(int input) {
+        
+    }
 }
