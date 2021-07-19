@@ -7,9 +7,11 @@ package com.mycompany.numberbaseball;
 
 import java.util.Scanner;
 
+
 public class GameManager {
     //------------------------------------------------------------------------//
     // 인스턴스 변수
+    final static int INPUT_EXCEPTION = -9876543;
     boolean isRight = false;
     int life;
     int targetNumber;
@@ -28,38 +30,68 @@ public class GameManager {
     // 메서드
     public void play(){
         
-        UserNumber();
+        setUserNumber();
+        printConnectMessage(targetNumber);
+        setlife();
+        
+        System.out.println("숫자야구 시작");
+        
+        while(isRight == false && life > 0){
+            setInputNumber();
+            isRight = getIsRight(targetNumber, inputNumber);
+            life--;
+            // 개발자모드 일 때 ( userNumber = 0 ) targetNumber, inputNumber, life 출력해주는 함수
+            printStatus(usernumber);
+            printResult(isRight);
+        }
+        printIsSuccess(isRight);
+    }
+    
+    public int getInteger()
+    {
+        int input = 0;
+        try{
+            Scanner sc = new Scanner(System.in);
+            input = sc.nextInt();
+            return input;
+        }catch(java.lang.RuntimeException e){
+            System.out.println("입력값이 잘못되었습니다. 정수를 입력하세요.");
+            
+            getInteger();
+            return INPUT_EXCEPTION;
+        }
+    }
+    
+    public void printStatus(int usernumber)
+    {
+        if(usernumber == 0){
+            System.out.println("-------------------------");
+            System.out.println("랜덤 숫자 = "  + targetNumber);
+            System.out.println("입력 숫자 = "  + inputNumber);
+            System.out.println("남은 라이프 = "  + life);
+            System.out.println("-------------------------");
+        }
+    }
+    
+    public void printResult(boolean isRight)
+    {
+        if(isRight == false){
+            System.out.println("오답입니다. 다시 시도해주세요.");
+        }
+    }
+    
+    public void printConnectMessage(int targetNumber)
+    {
         if(usernumber == 0){
             System.out.println("개발자로 접속하셨습니다.");
             System.out.println("랜덤 숫자= "+targetNumber);
         }
         else
             System.out.println("사용자로 접속하셨습니다.");
-        
-        System.out.println("라이프를 입력하세요.");
-        
-        do{
-            System.out.println("최소 LIFE는 1이상 입니다");
-            setlife();
-        }while(life<=0);
-        
-        System.out.println("숫자야구 시작");
-        
-        while(isRight == false){
-            do{
-                System.out.println("10이하의 정수를 입력하세요");
-                setInputNumber();
-            }while(inputNumber>9);
-            
-            isRight = getIsRight(targetNumber, inputNumber);
-            life--;
-            if(isRight==true)
-                break;
-            if(life==0)
-                break;
-            System.out.println("다시 시도해보세요");
-        }
-        
+    }
+    
+    public void printIsSuccess(boolean isRight)
+    {
         if(isRight == true){
             System.out.println("정답입니다.");
         }
@@ -76,34 +108,49 @@ public class GameManager {
     }
 
     public boolean getIsRight(int target, int input){
-        if(target==input)
-            return true;
-        else
-            return false;
+            return target==input;
     }
     
-    public void setInputNumber(){
-        System.out.println("예상 숫자를 입력하세요");
-        try{
-            Scanner sc = new Scanner(System.in);
-            inputNumber = sc.nextInt();
-        }catch(java.lang.RuntimeException e){
-            System.out.println("입력값이 잘못되었습니다. 정수를 입력하세요.");
-            setInputNumber();
+    public void checkInputNumberRange(int inputNumber)
+    {
+         if(inputNumber > 9 || inputNumber < 0)
+            {
+                System.out.println("0 ~ 9 사이의 정수만 입력하세요");
+                setInputNumber();
             }
     }
     
+    public void setInputNumber(){
+        //후
+        System.out.println("예상 숫자(10이하의 정수만) 입력하세요");
+        inputNumber = getInteger();
+        checkInputNumberRange(inputNumber);
+        
+    }
+    
     public void setlife(){
-        try{
-            Scanner sc = new Scanner(System.in);
-             life = sc.nextInt();
-        }catch(java.lang.RuntimeException e){
-            System.out.println("입력한 라이프 값이 잘못되었습니다");
+        //후
+        System.out.println("라이프를 입력하세요.");
+        int input = getInteger();
+        if(input != INPUT_EXCEPTION)
+            life = input;
+        System.out.println("life : " + life );
+        System.out.println("input : " + input );
+        if(life <= 0 && input != INPUT_EXCEPTION){
+            System.out.println("최소 LIFE는 1이상 입니다");
             setlife();
         }
     }
     
-    
+    public void setUserNumber(){
+        //후
+        System.out.println("회원넘버를 입력하세요.");
+        usernumber = getInteger();
+        if(usernumber < 0){
+                System.out.println("회원넘버는 0 이상 가능합니다");
+                getInteger();
+        }
+    }
     
     public int getStrike(){
         
@@ -115,18 +162,6 @@ public class GameManager {
         return 0;
     }    
     
-    public void UserNumber(){
-        try{
-            do{
-                System.out.println("회원넘버를 입력하세요.");
-                Scanner sc = new Scanner(System.in);
-                usernumber = sc.nextInt();
-            }while(usernumber<0);
-        }catch(java.lang.RuntimeException e){
-            System.out.println("회원정보 입력 오류");
-            UserNumber();
-        }
-    }
 }
     
     
