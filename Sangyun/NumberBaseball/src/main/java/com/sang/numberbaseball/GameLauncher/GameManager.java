@@ -136,16 +136,16 @@ public class GameManager {
     //
     //------------------------------------------------------------------------//
     private int getInteger(){
-        Scanner sc = new Scanner(System.in);
         int input = 0;
-        try{
-            input = sc.nextInt();
-        }catch (InputMismatchException exception) {
-            System.out.println("정수만 입력 가능합니다.");
-            sc = new Scanner(System.in);
-            input = sc.nextInt();
+        while(true){
+            try{
+                Scanner sc = new Scanner(System.in);
+                input = sc.nextInt();
+                break;
+            }catch (InputMismatchException exception) {
+                System.out.println("정수만 입력 가능합니다.");
+            }
         }
-        
         return input;
     }
     //------------------------------------------------------------------------//
