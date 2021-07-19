@@ -29,7 +29,8 @@ public class Debug {
     public static void log(String message){
         if(DEBUG){
             String callInfo = getClassName() + ".java:[" + getLineNumber() +",0]";
-            System.out.println(callInfo + " "+ getTime() + " : " + message);
+//            System.out.println(callInfo + " "+ getTime() + " : " + message);
+            System.out.println(message);
         }
     }
     //------------------------------------------------------------------------//

@@ -13,10 +13,16 @@ public class Player {
     private String name;
     private int inputNumber;
     private int life;
+    private boolean isRight;
 
-    public Player(String name, int inputNumber, int life) {
+    public Player(String name) {
+        this.inputNumber = -1;
         this.name = name;
-        this.inputNumber = inputNumber;
+    }
+    
+    public Player(String name, int life){
+        this.inputNumber = -1;
+        this.name = name;
         this.life = life;
     }
     
@@ -26,8 +32,23 @@ public class Player {
         playerInfo += "name : " + this.name + "\n";
         playerInfo += "inputNumber : " + this.inputNumber + "\n";
         playerInfo += "life : " + this.life + "\n";
-        
+        playerInfo += "성공 여부 : " + this.isRight;        
         return playerInfo;
+    }
+    public boolean compareInputNumberWith(int targetNumber){
+        return inputNumber == targetNumber;
+    }
+    
+    public boolean getIsRight(){
+        return isRight;
+    }
+    
+    public void setIsRight(boolean isRight){
+        this.isRight = isRight;
+    }
+    
+    public int getLife(){
+        return life;
     }
     
     public void decreaseLife(){
