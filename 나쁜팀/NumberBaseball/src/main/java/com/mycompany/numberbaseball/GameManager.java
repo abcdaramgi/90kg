@@ -50,16 +50,16 @@ public class GameManager {
     public int getInteger()
     {
         int input = 0;
-        try{
-            Scanner sc = new Scanner(System.in);
-            input = sc.nextInt();
-            return input;
-        }catch(java.lang.RuntimeException e){
-            System.out.println("입력값이 잘못되었습니다. 정수를 입력하세요.");
-            
-            getInteger();
-            return INPUT_EXCEPTION;
+        while(true){
+            try{
+                Scanner sc = new Scanner(System.in);
+                input = sc.nextInt();
+                break;
+            }catch(java.lang.RuntimeException e){
+                System.out.println("입력값이 잘못되었습니다. 정수를 입력하세요.");
+            }
         }
+        return input;
     }
     
     public void printStatus(int usernumber)
@@ -108,7 +108,7 @@ public class GameManager {
     }
 
     public boolean getIsRight(int target, int input){
-            return target==input;
+            return target == input;
     }
     
     public void checkInputNumberRange(int inputNumber)
@@ -129,17 +129,11 @@ public class GameManager {
     }
     
     public void setlife(){
-        //후
+        
         System.out.println("라이프를 입력하세요.");
         int input = getInteger();
-        if(input != INPUT_EXCEPTION)
-            life = input;
-        System.out.println("life : " + life );
-        System.out.println("input : " + input );
-        if(life <= 0 && input != INPUT_EXCEPTION){
-            System.out.println("최소 LIFE는 1이상 입니다");
-            setlife();
-        }
+        life = input;
+
     }
     
     public void setUserNumber(){
