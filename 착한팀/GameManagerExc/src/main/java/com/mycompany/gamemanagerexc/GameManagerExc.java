@@ -32,61 +32,39 @@ public class GameManagerExc {
     //------------------------------------------------------------------------//
     // 메서드
     public void play(){
-        System.out.println("회원 번호를 입력하세요");
+
         setId();
-        
+        setLife();
 
-        if(id==0){
-            System.out.println("개발자모드로 진행합니다");
-            System.out.println("targetNumber = "+targetNumber);
-        }
-        
-        else if(0<=id&& id<=100) {
-            System.out.println("사용자모드로 진행합니다");
-        }
-        
-        else{
-            System.out.println("ID값 오류입니다. 0~100까지 숫자로 입력하세요");
-            setId();
-        }
-            do{
-            System.out.println("0보다 큰수의 라이프를 입력하세요.");
-            setLife();
-            }while(life<0);
+        while(!isRight && life != 0){
+            setInputNumber();
             
-            if (life <= 0){
-                System.out.println("0보다 큰 숫자를 입력해 주세요");
-                 setLife();
-            }
+            isRight = getIsRight(targetNumber, inputNumber);
+            printResult(targetNumber, inputNumber);
+            
+            if(!isRight)
+                life--;
+            // 개발자 모드일때 (userNumber == 0) 라이프, 타겟 넘버, 인풋넘버를 출력하는 함수
+            printStatus();
+        }
 
-            // 라이프 수 만큼 입력을 받을 수 있고,
-            // 라이프 수가 다따르기 전에 답을 맞추면 성공
-            // 라이프 수가 다딸라도 못맞추면 실패
-            while(isRight==false){
-                System.out.println("남은 횟수 = "+life);
-                System.out.println("예상숫자를 입력하세요.");
-                
-                setInputNumber();
-                 
-		if (life > 0 && inputNumber >= 0 && inputNumber <= 9){
-           	isRight=getIsRight(targetNumber, inputNumber);
-            	life--;
-            	if(life==0)
-                	break;
-            	}
-            	else{
-                	System.out.println("입력 값 오류입니다.");
-            	} 
-            }
-
-            if(life==0)
-                System.out.println("실패");
-            else
-                System.out.println("성공");
+        if(life == 0)
+            System.out.println("실패");
+        else
+            System.out.println("성공");
         }
     //------------------------------------------------------------------------//
     public void manual(){
         // 기능 추가 되면
+    }
+    public void printStatus(){
+            if(id == 0){
+                System.out.println("--------------------");
+                System.out.println("라이프 ="+life);
+                System.out.println("타겟넘버 ="+targetNumber);
+                System.out.println("인풋넘버 ="+inputNumber);
+                System.out.println("--------------------");
+            }
     }
     public int getRandomNumber(){
         int randomNumber = 0;
@@ -97,45 +75,80 @@ public class GameManagerExc {
         
         return randomNumber;
     }
+    
     public void setLife(){
-        try{
-            Scanner sl = new Scanner(System.in);
-            this.life = sl.nextInt();
+        System.out.println("0보다 큰수의 라이프를 입력하세요.");
+        life = getInteger();
+        if(life<=0){
+          System.out.println("음수는 입력 할 수 없습니다.");
+          setLife();
         }
-        catch (java.lang.RuntimeException e) {
-            System.out.println("라이프 값 오류입니다. 다시 입력하세요");
-                setLife();
-        }
-
     }
+    
+    private int getInteger(){
+        int input = 0;
+        while(true){
+            try{
+                Scanner sc = new Scanner(System.in);
+                input = sc.nextInt();
+                break;
+            }catch(java.lang.RuntimeException e){
+                System.out.println("입력값 오류. 다시 입력해주세요");
+            }
+        }
+      
+      return input;
+    }
+      
     public void setId(){
-        try{
-            Scanner sc = new Scanner(System.in);
-            this.id = sc.nextInt();
+        System.out.println("회원 번호를 입력하세요");
+        
+       this.id = getInteger();
+        
+       
+        if(id==0){
+            System.out.println("개발자모드로 진행합니다");
+            System.out.println("targetNumber = " + targetNumber);
         }
-        catch (java.lang.RuntimeException e) {
-            System.out.println("ID 값 오류입니다. 다시 입력하세요");
-                setId();
+        
+        else if(0<=id && id<=100) {
+            System.out.println("사용자모드로 진행합니다");
         }
-            
+        
+        else{
+            System.out.println("ID값 오류입니다. 0~100까지 숫자로 입력하세요");
+            setId();
+        }
+        
+        
     }
+    
     public void setInputNumber(){
-        try{
-            Scanner in = new Scanner(System.in);
-            this.inputNumber = in.nextInt();
-        }
-        catch (java.util.InputMismatchException e) {
-            System.out.println("입력 값 오류입니다.");
-            setInputNumber();
-        }    
-
+        System.out.println("남은 횟수 = " + life);
+        System.out.println("예상숫자를 입력하세요.");
+        this.inputNumber = getInteger();
+        checkInputNumberRange(inputNumber); 
     }
 
+    public void checkInputNumberRange(int inputNumber){
+        if (inputNumber > 9 || inputNumber < 0){
+            System.out.println("0 ~ 9 사이 정수를 입력해야합니다.");
+            setInputNumber();
+        }
+
+    }
+    // 스트라이크랑 볼
+    public void printResult(int targetNumber, int inputNumber){
+        if (targetNumber == inputNumber){
+           
+        }
+        else{
+            System.out.println("틀렸습니다. 다시 입럭하셈");
+        }
+    }
+    
     public boolean getIsRight(int target, int input){
-        if(target==input)
-            return true;
-        else
-            return false;
+        return target == input;
     }
     // 요거는 아직 ㄴㄴ 자릿수 추가되면 해볼거임
     public int getStrike(){
