@@ -13,9 +13,9 @@ import com.sang.numberbaseball.GameLauncher.Game;
  */
 public class VeryHardMode extends HardMode{
     public VeryHardMode(){
-        MAX_SIZE = 2;
-        min = 10;
-        max = 100;
+        MAX_SIZE = 4;
+        min = 1000;
+        max = 10000;
         targetNumber = getRandomNumber();
     }
 }

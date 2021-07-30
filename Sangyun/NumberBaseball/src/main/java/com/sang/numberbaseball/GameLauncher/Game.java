@@ -26,6 +26,8 @@ public class Game {
     int numberOfPlayer;
     
     public ArrayList<Player> players;
+    ArrayList<Player> rank = new ArrayList<Player>();
+    
     //------------------------------------------------------------------------//
     //생성자
     //객체를 생성시키는 놈이라고도 설명 가능
@@ -53,11 +55,13 @@ public class Game {
                 
                 printResult(player);
                 if(isRight){
+                    rank.add(player);
                     numberOfPlayer--;
                 }
                 else{
                     player.decreaseLife();
                     if(player.getLife() <= 0){
+                        rank.add(player);
                         numberOfPlayer--;
                     }
                 }
@@ -66,14 +70,16 @@ public class Game {
             
         }
         printGameOver();
-        askDoRestart();
     }
     //------------------------------------------------------------------------//
     //
     //------------------------------------------------------------------------//
     private void printGameOver(){
-        // 최종 순위 출력
-        // 라이프 젤 많은 사람 우승자
+        int i=1;
+        for(Player player : rank){
+            System.out.println(i + "등 : "+ player.getName() + ", life : " + player.getLife());
+            ++i;
+        }
         
     }
     //------------------------------------------------------------------------//
@@ -188,24 +194,7 @@ public class Game {
     public int getBall(int input){
         return 0;
     }
-    //------------------------------------------------------------------------//
-    //
-    //------------------------------------------------------------------------//
-    private void askDoRestart() {
-        System.out.println("다시 하시겠습니다? (y/n)");
-        Scanner sc = new Scanner(System.in);
-        char input = sc.next().charAt(0);
-        
-        if(input == 'y' || input == 'Y'){
-            start();
-        }
-        else if(input == 'n' || input == 'N'){
-            
-        }
-        else{
-            askDoRestart();
-        }
-    }
+    
     //------------------------------------------------------------------------//
     //
     //------------------------------------------------------------------------//

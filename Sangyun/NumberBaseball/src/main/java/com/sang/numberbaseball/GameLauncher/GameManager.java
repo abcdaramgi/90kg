@@ -21,6 +21,7 @@ public class GameManager {
     public void gameStart(){
         setLevel();
         game.start();
+        askDoRestart();
     }
     
     public void printManual(){
@@ -56,6 +57,25 @@ public class GameManager {
                 setLevel();
                 break;
 
+        }
+    }
+    
+    //------------------------------------------------------------------------//
+    //
+    //------------------------------------------------------------------------//
+    private void askDoRestart() {
+        System.out.println("다시 하시겠습니다? (y/n)");
+        Scanner sc = new Scanner(System.in);
+        char input = sc.next().charAt(0);
+        
+        if(input == 'y' || input == 'Y'){
+            gameStart();
+        }
+        else if(input == 'n' || input == 'N'){
+            
+        }
+        else{
+            askDoRestart();
         }
     }
 }
