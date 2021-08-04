@@ -5,6 +5,7 @@
  */
 package com.mycompany.gamemanagerexc;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -15,11 +16,12 @@ import java.util.Scanner;
 public class GameManagerExc {
     //------------------------------------------------------------------------//
     // 인스턴스 변수
-    int id;
+    int numberOfPlayer;
     boolean isRight = false;
     int life;
     int targetNumber;
-    int inputNumber;
+    ArrayList<Player> players = new ArrayList<Player>();
+    ArrayList<Player> result = new ArrayList<Player>();
     
     //------------------------------------------------------------------------//
     // 생성자
@@ -32,40 +34,62 @@ public class GameManagerExc {
     //------------------------------------------------------------------------//
     // 메서드
     public void play(){
-
-        setId();
+        setNumberOfPlayer();
         setLife();
+        setPlayerInfo();
+        printStatus();
+        
+       
 
-        while(!isRight && life != 0){
-            setInputNumber();
-            
-            isRight = getIsRight(targetNumber, inputNumber);
-            printResult(targetNumber, inputNumber);
-            
-            if(!isRight)
-                life--;
-            // 개발자 모드일때 (userNumber == 0) 라이프, 타겟 넘버, 인풋넘버를 출력하는 함수
-            printStatus();
-        }
+        
 
-        if(life == 0)
-            System.out.println("실패");
-        else
-            System.out.println("성공");
+        while(numberOfPlayer > 0){
+            for (Player player : players){
+                if(player.isRight == true)
+                    continue;
+                
+                setInputNumber(player);
+
+                isRight = player.getIsRight(targetNumber);
+                player.isRight = isRight;
+                player.printResult(targetNumber);
+
+
+                if (isRight){
+                    result.add(player);
+                    numberOfPlayer--;
+                }
+                else{
+                    player.life--;
+                   if(player.life == 0){
+                        result.add(player);
+                        numberOfPlayer--;
+                        System.out.println("실패");
+                   }
+                }
+    // 개발자 모드일때 (userNumber == 0) 라이프, 타겟 넘버, 인풋넘버를 출력하는 함수
+            }
         }
+        printfResult();
+    }
     //------------------------------------------------------------------------//
     public void manual(){
         // 기능 추가 되면
     }
+    
+    
     public void printStatus(){
-            if(id == 0){
-                System.out.println("--------------------");
-                System.out.println("라이프 ="+life);
-                System.out.println("타겟넘버 ="+targetNumber);
-                System.out.println("인풋넘버 ="+inputNumber);
-                System.out.println("--------------------");
+            if(numberOfPlayer == 3){
+                System.out.println( "----------------------------------------------");
+                System.out.println("정답 : " + targetNumber);
+                for(Player player : players){
+                    System.out.println("불러 " + player.name + " "  + player.life);  
+                }
+                System.out.println( "----------------------------------------------");
             }
     }
+    
+    
     public int getRandomNumber(){
         int randomNumber = 0;
         
@@ -99,57 +123,55 @@ public class GameManagerExc {
       
       return input;
     }
+   
       
-    public void setId(){
-        System.out.println("회원 번호를 입력하세요");
+    public void setNumberOfPlayer(){
+        System.out.println("플레이 할 인원을 입력하세요");
         
-       this.id = getInteger();
+        this.numberOfPlayer = getInteger();
         
        
-        if(id==0){
-            System.out.println("개발자모드로 진행합니다");
-            System.out.println("targetNumber = " + targetNumber);
+        if(numberOfPlayer <= 0){
+            System.out.println("0이상의 자연수를 입력해주세요");
         }
         
-        else if(0<=id && id<=100) {
-            System.out.println("사용자모드로 진행합니다");
+        else if(0 <= numberOfPlayer && numberOfPlayer<=100){
+            System.out.println("현재 인원 : " + numberOfPlayer);
+            System.out.println("게임을 시작하겠습니다");
         }
-        
-        else{
-            System.out.println("ID값 오류입니다. 0~100까지 숫자로 입력하세요");
-            setId();
-        }
-        
-        
     }
     
-    public void setInputNumber(){
-        System.out.println("남은 횟수 = " + life);
+    private void setPlayerInfo() {
+        // numberOfPlayer 만큼 플레이어 정보를 받고, 플레이어를 생성한다
+        // 반복문으로 이름을 입력받는다
+        // 이반복문 안에 플에이러르 생성한다.
+        // 이름은 어떻게 세팅할건지 한번 생각...(생성자)
+        // players.add();
+        for(int i = 0; i < numberOfPlayer; i++){
+            System.out.println("이름을 입력하세요");
+            String playerName = getString();
+            Player player = new Player(playerName, life);            
+            players.add(player);
+        }
+    }
+    
+    public void setInputNumber(Player player){
+        System.out.println(player.name + "의 차례입니다.");
+        System.out.println("남은 횟수 = " + player.life);
         System.out.println("예상숫자를 입력하세요.");
-        this.inputNumber = getInteger();
-        checkInputNumberRange(inputNumber); 
+        player.inputNumber = getInteger();
+        checkInputNumberRange(player); 
     }
 
-    public void checkInputNumberRange(int inputNumber){
-        if (inputNumber > 9 || inputNumber < 0){
+    public void checkInputNumberRange(Player player){
+        if (player.inputNumber > 9 || player.inputNumber < 0){
             System.out.println("0 ~ 9 사이 정수를 입력해야합니다.");
-            setInputNumber();
+            setInputNumber(player);
         }
 
     }
-    // 스트라이크랑 볼
-    public void printResult(int targetNumber, int inputNumber){
-        if (targetNumber == inputNumber){
-           
-        }
-        else{
-            System.out.println("틀렸습니다. 다시 입럭하셈");
-        }
-    }
-    
-    public boolean getIsRight(int target, int input){
-        return target == input;
-    }
+
+
     // 요거는 아직 ㄴㄴ 자릿수 추가되면 해볼거임
     public int getStrike(){
         
@@ -158,6 +180,31 @@ public class GameManagerExc {
     public int getBall(){
         
         return 0;
+    }
+
+    private String getString() {
+        String input = "0";
+        while(true){
+            try{
+                Scanner sc = new Scanner(System.in);
+                input = sc.next();
+                break;
+            }catch(java.lang.RuntimeException e){
+                System.out.println("입력값 오류. 다시 입력해주세요");
+            }
+        }
+      
+      return input;
+    }
+
+    public void printfResult(){
+        int i = 1;
+        System.out.println( "----------------------------------------------");
+        for ( Player result : players){
+            System.out.println( i + "등" + result.name + "라이프" + result.life );
+            i++;
+        }
+        System.out.println( "----------------------------------------------");
     }
 }
 
