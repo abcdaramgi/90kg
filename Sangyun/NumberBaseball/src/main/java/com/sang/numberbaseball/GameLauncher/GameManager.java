@@ -5,8 +5,9 @@
  */
 package com.sang.numberbaseball.GameLauncher;
 
-import Util.Debug;
-import java.util.ArrayList;
+import com.sang.numberbaseball.GameLauncher.GameMode.HardMode;
+import com.sang.numberbaseball.GameLauncher.GameMode.NomalMode;
+import com.sang.numberbaseball.GameLauncher.GameMode.VeryHardMode;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -15,177 +16,50 @@ import java.util.Scanner;
  * @author ssy02
  */
 public class GameManager {
-    //------------------------------------------------------------------------//
-    // 상수
+    Game game;
     
-    //------------------------------------------------------------------------//
-    // 인스턴스 변수
-    boolean isRight = false;
-    int life;
-    int targetNumber;
-    int inputNumber;
-    int userNumber;
-    int numberOfPlayer;
-    
-    ArrayList<Player> players;
-    //------------------------------------------------------------------------//
-    //생성자
-    //객체를 생성시키는 놈이라고도 설명 가능
-    //객체를 처음 만들 때 호출되는 함수
-    //클래스 명과 동일한 이름으로 함수를 정의한다
-    //반환값을 안적어줘도 오류가 없음 -> 자동으로 자기 자신을 반환해주기 때문
-    public GameManager(){
-        targetNumber = getRandomNumber();
-    }
-    //------------------------------------------------------------------------//
-    // 메서드
     public void gameStart(){
-        setNumberOfPlayerr();
-        setLife();
-        setPlayers();
-        
-        while(numberOfPlayer > 0){
-            for(Player player : players){
-                if(player.getIsRight())
-                    continue;
-                setInputNumber(player);
-                isRight = player.compareInputNumberWith(targetNumber);
-                player.setIsRight(isRight);
-                
-                printResult(player);
-                if(isRight){
-                    numberOfPlayer--;
-                }
-                else{
-                    player.decreaseLife();
-                    if(player.getLife() <= 0){
-                        numberOfPlayer--;
-                    }
-                }
-                
-                printStatus();
-            }
-            
-        }
-        printGameOver();
+        setLevel();
+        game.start();
         askDoRestart();
     }
-    //------------------------------------------------------------------------//
-    //
-    //------------------------------------------------------------------------//
-    private void printGameOver(){
-        // 최종 순위 출력
-        // 라이프 젤 많은 사람 우승자
+    
+    public void printManual(){
+        System.out.println("난이도를 선택해 주세요");
+        System.out.println("LEVEL 1 : 0 ~ 9         (1)");
+        System.out.println("LEVEL 2 : 10 ~ 99       (2)");
+        System.out.println("LEVEL 3 : 100 ~ 999     (3)");
+        System.out.println("LEVEL 4 : 1000 ~ 9999   (4)");
+    }
+    
+    public void setLevel(){
+        printManual();
+        int level = Game.getInteger();
         
-    }
-    //------------------------------------------------------------------------//
-    //
-    //------------------------------------------------------------------------//
-    private void setNumberOfPlayerr(){
-        System.out.println("플레이어 수를 입력하세요.");
-        numberOfPlayer = getInteger();
-        setIsDebug(numberOfPlayer);
-    }
-    //------------------------------------------------------------------------//
-    //
-    //------------------------------------------------------------------------//
-    private void setIsDebug(int userNumber){
-        Debug.setIsDebug(userNumber == 3);
-    }
-    //------------------------------------------------------------------------//
-    //
-    //------------------------------------------------------------------------//
-    private void setLife(){
-        System.out.println("라이프를 입력하세요.");
-        life = getInteger();
-        if(life <= 0){
-            System.out.println("라이프는 양수만 입력 가능합니다.");
-            setLife();
-        }
-    }
-    //------------------------------------------------------------------------//
-    //
-    //------------------------------------------------------------------------//
-    private void printStatus() {
-        Debug.log("------------------------------------------");
-        Debug.log("Target Number : " + targetNumber);
-        for(Player p : players){
-            Debug.log("--------------player " + p.getName() + "--------------");
-            Debug.log(p.toString());
-        }
-        
-        Debug.log("------------------------------------------");
-    }
-    //------------------------------------------------------------------------//
-    //
-    //------------------------------------------------------------------------//
-    private void printResult(Player p){
-        if(p.getIsRight()){
-            System.out.println(p.getName() + "님은 정답입니다!");
-        }
-        else{
-            System.out.println(p.getName() + "님은 오답입니다.");
-        }
-    }
-    //------------------------------------------------------------------------//
-    //
-    //------------------------------------------------------------------------//
-    public void manual(){
-        
-    }
-    //------------------------------------------------------------------------//
-    //
-    //------------------------------------------------------------------------//
-    public int getRandomNumber(){
-        int randomNumber= (int) (Math.random()*10);
-        
-        return randomNumber;
-    }
-    //------------------------------------------------------------------------//
-    //
-    //------------------------------------------------------------------------//
-    public boolean getIsRight(int target, int input){
-        return target == input;
-    }
-    //------------------------------------------------------------------------//
-    //
-    //------------------------------------------------------------------------//
-    public void setInputNumber(Player player){
-        System.out.println(player.getName() + "의 차례입니다.");
-        System.out.println("예상 숫자를 입력하세요.");
-        int input = getInteger();
-        player.setInputNumber(input);
-        if(!checkInputNumberRange(input)){
-            System.out.println("현재 난이도에선 0 ~ 9 까지의 정수만 입력가능합니다.");
-            setInputNumber(player);
-        }
-    }
-    //------------------------------------------------------------------------//
-    //
-    //------------------------------------------------------------------------//
-    private int getInteger(){
-        int input = 0;
-        while(true){
-            try{
-                Scanner sc = new Scanner(System.in);
-                input = sc.nextInt();
+        switch (level){
+            case 1:
+                game = new Game();
+                System.out.println("Easy mode를 선택하셨습니다.");
                 break;
-            }catch (InputMismatchException exception) {
-                System.out.println("정수만 입력 가능합니다.");
-            }
+            case 2:
+                game = new NomalMode();
+                System.out.println("Nomal mode를 선택하셨습니다.");
+                break;
+            case 3:
+                game = new HardMode();
+                System.out.println("Hard mode를 선택하셨습니다.");
+                break;
+            case 4:
+                game = new VeryHardMode();
+                System.out.println("Very Hard mode를 선택하셨습니다.");
+                break;
+            default:
+                setLevel();
+                break;
+
         }
-        return input;
     }
-    //------------------------------------------------------------------------//
-    //
-    //------------------------------------------------------------------------//
-    public int getStrike(){
-        
-        return 0;
-    }
-    public int getBall(){
-        return 0;
-    }
+    
     //------------------------------------------------------------------------//
     //
     //------------------------------------------------------------------------//
@@ -202,40 +76,6 @@ public class GameManager {
         }
         else{
             askDoRestart();
-        }
-    }
-    //------------------------------------------------------------------------//
-    //
-    //------------------------------------------------------------------------//
-    private boolean checkInputNumberRange(int input) {
-        return 0 <= input && input < 10;
-    }
-    //------------------------------------------------------------------------//
-    //
-    //------------------------------------------------------------------------//
-    private String getString(){
-        String input = "";
-        while(true){
-            try{
-                Scanner sc = new Scanner(System.in);
-                input = sc.nextLine();
-                break;
-            }catch (Exception exception) {
-                exception.printStackTrace();
-            }
-        }
-        return input;
-    }
-    //------------------------------------------------------------------------//
-    //
-    //------------------------------------------------------------------------//
-    private void setPlayers() {
-        players = new ArrayList<Player>(numberOfPlayer);
-        for(int i = 0; i < numberOfPlayer; i++){
-            System.out.println((i + 1) + "번째 플레이어의 이름을 입력하세요.");
-            String userName = getString();
-            Player p = new Player(userName, life);
-            players.add(p);
         }
     }
 }

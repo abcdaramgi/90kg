@@ -5,6 +5,8 @@
  */
 package com.sang.numberbaseball.GameLauncher;
 
+import com.sang.numberbaseball.GameLauncher.GameMode.HardMode;
+
 /**
  *
  * @author ssy02

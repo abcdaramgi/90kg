@@ -5,21 +5,18 @@
  */
 package com.sang.numberbaseball.GameLauncher.GameMode;
 
-import com.sang.numberbaseball.GameLauncher.GameManager;
+import com.sang.numberbaseball.GameLauncher.Game;
+import com.sang.numberbaseball.GameLauncher.Player;
 
 /**
  *
  * @author ssy02
  */
-public class NomalMode  extends GameManager implements Game{
-    @Override
-    public void play(){
-        
-    }
-    @Override
-    public int getRandomNumber(){
-        int randomNumber= (int) (Math.random()*100);
-        
-        return randomNumber;
+public class NomalMode  extends HardMode {
+    public NomalMode(){
+        MAX_SIZE = 2;
+        min = 10;
+        max = 100;
+        targetNumber = getRandomNumber();
     }
 }

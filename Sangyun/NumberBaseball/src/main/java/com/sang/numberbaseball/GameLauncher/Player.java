@@ -14,6 +14,10 @@ public class Player {
     private int inputNumber;
     private int life;
     private boolean isRight;
+    
+    public Player(int inputNumber){
+        this.inputNumber = inputNumber;
+    }
 
     public Player(String name) {
         this.inputNumber = -1;

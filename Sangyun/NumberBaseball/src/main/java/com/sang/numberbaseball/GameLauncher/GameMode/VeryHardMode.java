@@ -5,21 +5,17 @@
  */
 package com.sang.numberbaseball.GameLauncher.GameMode;
 
-import com.sang.numberbaseball.GameLauncher.GameManager;
+import com.sang.numberbaseball.GameLauncher.Game;
 
 /**
  *
  * @author ssy02
  */
-public class VeryHardMode extends GameManager implements Game{
-    @Override
-    public void play(){
-        
-    }
-    @Override
-    public int getRandomNumber(){
-        int randomNumber= (int) (Math.random()*1000);
-        
-        return randomNumber;
+public class VeryHardMode extends HardMode{
+    public VeryHardMode(){
+        MAX_SIZE = 4;
+        min = 1000;
+        max = 10000;
+        targetNumber = getRandomNumber();
     }
 }

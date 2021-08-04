@@ -5,16 +5,12 @@
  */
 package com.sang.numberbaseball.GameLauncher.GameMode;
 
-import com.sang.numberbaseball.GameLauncher.GameManager;
+import com.sang.numberbaseball.GameLauncher.Game;
 
 /**
  *
  * @author ssy02
  */
-public class EasyMode extends GameManager implements Game{
+public class EasyMode extends Game{
     
-    @Override
-    public void play(){
-        
-    }
 }
