@@ -23,10 +23,6 @@ public class Player {
             return target == inputNumber;
     }
 
-    public void decreaseLife(){
-        this.life--;
-    }
-
     int size() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

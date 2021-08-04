@@ -33,20 +33,19 @@ public class GameManager {
         setlife();
         setPlayerInfo();
         printStatus();
-         
+        
         System.out.println("숫자야구 시작");
         
         while(numberOfPlayer > 0){
             
             for(Player player : players){
-                
-                if(player.isRight == true)
+                if(player.isRight)
                     continue;
                 
                 setInputNumber(player);
                 boolean isRight = player.getIsRight(targetNumber);
                 player.isRight = isRight;
-                if(isRight == false){
+                if(!isRight){
                     printIsSuccess(isRight);
                     player.life--;
                     if(player.life == 0){
