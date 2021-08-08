@@ -5,16 +5,16 @@
  */
 package com.mycompany.numberbaseball;
 
-import Gamemode.HardMode;
-import Gamemode.NomalMode;
-import Gamemode.VeryHardMode;
+import GameMode.NomalMode;
+import GameMode.HardMode;
+import GameMode.VeryHardMode;
 
 /**
  *
  * @author ASUS
  */
 public class Gamemanager {
-    Game game;
+    Game game;  
     //getRandomNumber 바뀌여야딤
     //-> 중복x override
     //입력숫자도 중복 x
@@ -26,6 +26,7 @@ public class Gamemanager {
     }
     
     public void printLevel(){
+        System.out.println("난이도를 설정하세요.");
         System.out.println("EasyMode 0 ~ 9  (1)");
         System.out.println("NomalMode 10 ~ 99  (2)");
         System.out.println("HardMode 100 ~ 999  (3)");

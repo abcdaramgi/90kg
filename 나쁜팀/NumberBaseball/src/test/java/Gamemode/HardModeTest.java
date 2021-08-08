@@ -5,6 +5,7 @@
  */
 package Gamemode;
 
+import GameMode.HardMode;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,6 +13,9 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author ASUS
  */
+
+// ctrl+F6 실행
+
 public class HardModeTest {
     
     public HardModeTest() {

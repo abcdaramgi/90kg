@@ -4,11 +4,8 @@
  * and open the template in the editor.
  */
 package com.mycompany.numberbaseball;
-
 import java.util.ArrayList;
 import java.util.Scanner;
-
-
 public class Game {
     //------------------------------------------------------------------------//
     // 인스턴스 변수
@@ -38,8 +35,8 @@ public class Game {
         
         while(numberOfPlayer > 0){
             
-            for(Player player : players){
-                if(player.isRight)
+            for(Player player : players){   
+                if(player.isRight)          
                     continue;
                 
                 setInputNumber(player);
@@ -57,12 +54,8 @@ public class Game {
                     rank.add(player);
                     numberOfPlayer--;
                 }
-                printStatus();
-                
             }
-            // 개발자모드 일 때 ( userNumber = 0 ) targetNumber, inputNumber, life 출력해주는 함수
             printStatus();
-            
         }
         printRank();
     }
@@ -133,7 +126,7 @@ public class Game {
         int i=1;
         for(Player player : rank){
             System.out.println(i+"등은"+ player.name + "입니다.");
-            ++i;
+            i++;
         }
     }
     public int getRandomNumber(){

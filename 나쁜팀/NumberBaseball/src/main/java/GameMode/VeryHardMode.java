@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Gamemode;
+package GameMode;
 
 /**
  *
  * @author ASUS
  */
-public class HardMode extends NomalMode{
-    public HardMode(){
-        min = 100;
-        max = 1000;
-        MAX_SIZE = 3;
+public class VeryHardMode extends NomalMode {
+     public VeryHardMode(){
+        min = 1000;
+        max = 10000;
+        MAX_SIZE = 4;
         targetNumber = getRandomNumber();
     }
 }

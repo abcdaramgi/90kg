@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Gamemode;
+package GameMode;
 
 import com.mycompany.numberbaseball.Game;
 
