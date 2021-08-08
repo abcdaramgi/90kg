@@ -11,8 +11,8 @@ package com.mycompany.gamemanagerexc;
  */
 public class Player {
     int life;
-    String name;
-    int inputNumber;
+    public String name;
+    public int inputNumber;
     boolean isRight;
     
     public Player(String name, int life){
@@ -24,13 +24,5 @@ public class Player {
         return target == inputNumber;
     }
     
-    // 스트라이크랑 볼
-    public void printResult(int targetNumber){
-        if (targetNumber == inputNumber){
-            System.out.println("성공");
-        }
-        else{
-            System.out.println("틀렸습니다. 다시 입럭하셈");
-        }
-    }
+
 }

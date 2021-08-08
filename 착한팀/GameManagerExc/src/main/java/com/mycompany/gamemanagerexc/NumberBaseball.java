@@ -13,7 +13,7 @@ public class NumberBaseball {
     //------------------------------------------------------------------------//
     // 메서드
     public static void main( String[] args){
-        GameManagerExc gm = new GameManagerExc();
-        gm.play();
+        GameManager gm = new GameManager();
+        gm.gamePlay();
     }
 }
