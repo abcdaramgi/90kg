@@ -11,9 +11,9 @@ package com.mycompany.numberbaseball;
  */
 public class Player {
     int life;
-    String name;
-    int inputNumber;
-    boolean isRight;
+    public String name;
+    public int inputNumber;
+    public boolean isRight;
     public Player(String name, int life){
         this.name = name;
         this.life = life;
@@ -21,10 +21,6 @@ public class Player {
     
     public boolean getIsRight(int target){
             return target == inputNumber;
-    }
-
-    public void decreaseLife(){
-        this.life--;
     }
 
     int size() {

@@ -4,16 +4,13 @@
  * and open the template in the editor.
  */
 package com.mycompany.numberbaseball;
-
 import java.util.ArrayList;
 import java.util.Scanner;
-
-
-public class GameManager {
+public class Game {
     //------------------------------------------------------------------------//
     // 인스턴스 변수
     int life;
-    int targetNumber;
+    public int targetNumber;
     int numberOfPlayer;
     ArrayList<Player> players = new ArrayList<Player>();
     ArrayList<Player> rank = new ArrayList<Player>();
@@ -23,7 +20,7 @@ public class GameManager {
     //객체를 처음 만들 때 호출되는 함수
     //클래스 명과 동일한 이름으로 함수를 정의한다
     //반환값을 안적어줘도 오류가 없음 -> 자동으로 자기 자신을 반환해주기 때문
-    public GameManager(){
+    public Game(){
         targetNumber = getRandomNumber();
     }
     //------------------------------------------------------------------------//
@@ -33,21 +30,20 @@ public class GameManager {
         setlife();
         setPlayerInfo();
         printStatus();
-         
+        
         System.out.println("숫자야구 시작");
         
         while(numberOfPlayer > 0){
             
-            for(Player player : players){
-                
-                if(player.isRight == true)
+            for(Player player : players){   
+                if(player.isRight)          
                     continue;
                 
                 setInputNumber(player);
                 boolean isRight = player.getIsRight(targetNumber);
                 player.isRight = isRight;
-                if(isRight == false){
-                    printIsSuccess(isRight);
+                printResult(player);
+                if(!isRight){
                     player.life--;
                     if(player.life == 0){
                         rank.add(player);
@@ -55,23 +51,18 @@ public class GameManager {
                     }
                 }
                 else{
-                    printResult(player.isRight);
                     rank.add(player);
                     numberOfPlayer--;
                 }
-                printStatus();
-                
             }
-            // 개발자모드 일 때 ( userNumber = 0 ) targetNumber, inputNumber, life 출력해주는 함수
             printStatus();
-            
         }
         printRank();
     }
     
     
     
-    public int getInteger()
+    public static int getInteger()
     {
         int input = 0;
         while(true){
@@ -111,9 +102,12 @@ public class GameManager {
         }
     }
     
-    public void printResult(boolean isRight)
+    public void printResult(Player p)
     {
-        if(isRight == false){
+        if(p.isRight ){
+            System.out.println("정답입니다. 다시 시도해주세요.");
+        }
+        else{
             System.out.println("오답입니다. 다시 시도해주세요.");
         }
     }
@@ -132,7 +126,7 @@ public class GameManager {
         int i=1;
         for(Player player : rank){
             System.out.println(i+"등은"+ player.name + "입니다.");
-            ++i;
+            i++;
         }
     }
     public int getRandomNumber(){
@@ -141,7 +135,7 @@ public class GameManager {
         return randomNumber;
     }
     
-    public void checkInputNumberRange(Player player)
+    public void inputException(Player player)
     {
          if(player.inputNumber > 9 || player.inputNumber < 0)
             {
@@ -153,9 +147,9 @@ public class GameManager {
     public void setInputNumber(Player player){
         //후
         System.out.println(player.name + "의 차례입니다.");
-        System.out.println("예상 숫자(10이하의 정수만) 입력하세요");
+        System.out.println("예상 숫자 입력하세요");
         player.inputNumber = getInteger();
-        checkInputNumberRange(player);
+        inputException(player);
         
     }
     
@@ -191,14 +185,15 @@ public class GameManager {
         }
         return str;
     }
+    
    
     
-    public int getStrike(){
+    public int getStrike(int target, int input){
         
         return 0;
     }
 
-    public int getBall(){
+    public int getBall(int target, int input){
         
         return 0;
     }    
