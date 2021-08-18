@@ -117,7 +117,7 @@ public class Client extends javax.swing.JFrame {
 
     private void setUpNetworking(){
         try {
-            sock = new Socket("192.168.0.7", 5000);
+            sock = new Socket("192.168.0.15", 5000);
             InputStreamReader streamReader = new InputStreamReader(sock.getInputStream());
             reader = new BufferedReader(streamReader);
             writer = new PrintWriter(sock.getOutputStream());
