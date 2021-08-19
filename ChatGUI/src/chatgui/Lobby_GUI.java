@@ -17,13 +17,12 @@ public class Lobby_GUI extends javax.swing.JFrame {
         pan_Base = new javax.swing.JPanel();
         pan_Menu = new javax.swing.JPanel();
         pan_Toolbar = new javax.swing.JPanel();
+        lab_Friend = new javax.swing.JLabel();
         lab_Matching = new javax.swing.JLabel();
         lab_Comunity = new javax.swing.JLabel();
         lab_Chatting = new javax.swing.JLabel();
         lab_Setting = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        lab_Friend = new javax.swing.JLabel();
         pan_Content = new javax.swing.JPanel();
         opaque = new javax.swing.JButton();
 
@@ -34,6 +33,16 @@ public class Lobby_GUI extends javax.swing.JFrame {
         pan_Menu.setBackground(new java.awt.Color(38, 38, 38));
 
         pan_Toolbar.setBackground(new java.awt.Color(159, 232, 202));
+
+        lab_Friend.setBackground(new java.awt.Color(111, 200, 111));
+        lab_Friend.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lab_Friend.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon64 (1).png"))); // NOI18N
+        lab_Friend.setOpaque(true);
+        lab_Friend.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lab_FriendMouseClicked(evt);
+            }
+        });
 
         lab_Matching.setBackground(new java.awt.Color(38, 38, 38));
         lab_Matching.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -95,16 +104,6 @@ public class Lobby_GUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setBackground(new java.awt.Color(111, 200, 111));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon64 (1).png"))); // NOI18N
-        jLabel1.setOpaque(true);
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout pan_ToolbarLayout = new javax.swing.GroupLayout(pan_Toolbar);
         pan_Toolbar.setLayout(pan_ToolbarLayout);
         pan_ToolbarLayout.setHorizontalGroup(
@@ -114,14 +113,14 @@ public class Lobby_GUI extends javax.swing.JFrame {
             .addComponent(lab_Chatting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(lab_Setting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pan_ToolbarLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lab_Friend, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 1, Short.MAX_VALUE))
         );
         pan_ToolbarLayout.setVerticalGroup(
             pan_ToolbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pan_ToolbarLayout.createSequentialGroup()
                 .addGap(110, 110, 110)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lab_Friend, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(lab_Matching, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -140,26 +139,15 @@ public class Lobby_GUI extends javax.swing.JFrame {
             }
         });
 
-        lab_Friend.setBackground(new java.awt.Color(111, 200, 111));
-        lab_Friend.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lab_Friend.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon64 (1).png"))); // NOI18N
-        lab_Friend.setOpaque(true);
-
         javax.swing.GroupLayout pan_MenuLayout = new javax.swing.GroupLayout(pan_Menu);
         pan_Menu.setLayout(pan_MenuLayout);
         pan_MenuLayout.setHorizontalGroup(
             pan_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pan_MenuLayout.createSequentialGroup()
                 .addComponent(pan_Toolbar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pan_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pan_MenuLayout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addComponent(jButton1)
-                        .addGap(53, 53, 53))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pan_MenuLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lab_Friend, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-                        .addGap(44, 44, 44))))
+                .addGap(71, 71, 71)
+                .addComponent(jButton1)
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         pan_MenuLayout.setVerticalGroup(
             pan_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,8 +155,6 @@ public class Lobby_GUI extends javax.swing.JFrame {
             .addGroup(pan_MenuLayout.createSequentialGroup()
                 .addGap(108, 108, 108)
                 .addComponent(jButton1)
-                .addGap(114, 114, 114)
-                .addComponent(lab_Friend, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -287,16 +273,16 @@ public class Lobby_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void opaqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opaqueActionPerformed
-        jLabel1.setOpaque(true);
-        jLabel1.setBackground(new Color(38,38,38,255));
-        jLabel1.setOpaque(false);
+        lab_Friend.setOpaque(true);
+        lab_Friend.setBackground(new Color(38,38,38,255));
+        lab_Friend.setOpaque(false);
     }//GEN-LAST:event_opaqueActionPerformed
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        jLabel1.setOpaque(true);
-        jLabel1.setBackground(new Color(38,38,38,255));
-        jLabel1.setOpaque(false);
-    }//GEN-LAST:event_jLabel1MouseClicked
+    private void lab_FriendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lab_FriendMouseClicked
+        lab_Friend.setOpaque(true);
+        lab_Friend.setBackground(new Color(38,38,38,255));
+        lab_Friend.setOpaque(false);
+    }//GEN-LAST:event_lab_FriendMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -332,7 +318,6 @@ public class Lobby_GUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lab_Chatting;
     private javax.swing.JLabel lab_Comunity;
     private javax.swing.JLabel lab_Friend;
