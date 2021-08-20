@@ -45,7 +45,6 @@ public class Main extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         pan_Base.setBackground(new java.awt.Color(17, 17, 17));
 
@@ -87,7 +86,7 @@ public class Main extends javax.swing.JFrame {
         pan_ToolbarLayout.setVerticalGroup(
             pan_ToolbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pan_ToolbarLayout.createSequentialGroup()
-                .addGap(102, 102, 102)
+                .addGap(100, 100, 100)
                 .addComponent(lab_Friend, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(lab_Matching, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -97,7 +96,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(lab_Chatting, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(lab_Setting, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pan_MenuLayout = new javax.swing.GroupLayout(pan_Menu);
@@ -106,7 +105,7 @@ public class Main extends javax.swing.JFrame {
             pan_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pan_MenuLayout.createSequentialGroup()
                 .addComponent(pan_Toolbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 200, Short.MAX_VALUE))
+                .addContainerGap(200, Short.MAX_VALUE))
         );
         pan_MenuLayout.setVerticalGroup(
             pan_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,7 +125,6 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        but_Exit.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Desktop\\New Piskel (12).png")); // NOI18N
         but_Exit.setBorder(null);
         but_Exit.setContentAreaFilled(false);
         but_Exit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -137,7 +135,6 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        but_Maximize.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Desktop\\New Piskel (11).png")); // NOI18N
         but_Maximize.setBorder(null);
         but_Maximize.setContentAreaFilled(false);
         but_Maximize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -148,7 +145,6 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        but_Minimize.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Desktop\\New Piskel (10).png")); // NOI18N
         but_Minimize.setBorder(null);
         but_Minimize.setContentAreaFilled(false);
         but_Minimize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
