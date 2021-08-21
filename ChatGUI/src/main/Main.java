@@ -29,88 +29,20 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         pan_Base = new javax.swing.JPanel();
-        pan_Menu = new javax.swing.JPanel();
-        pan_Toolbar = new javax.swing.JPanel();
-        lab_Friend = new javax.swing.JLabel();
-        lab_Matching = new javax.swing.JLabel();
-        lab_Comunity = new javax.swing.JLabel();
-        lab_Chatting = new javax.swing.JLabel();
-        lab_Setting = new javax.swing.JLabel();
         pan_Title = new javax.swing.JPanel();
         but_Exit = new javax.swing.JButton();
         but_Maximize = new javax.swing.JButton();
         but_Minimize = new javax.swing.JButton();
-        pan_Content = new javax.swing.JPanel();
+        pan_Body = new javax.swing.JPanel();
+        lobby1 = new main.Lobby();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         pan_Base.setBackground(new java.awt.Color(17, 17, 17));
-
-        pan_Menu.setBackground(new java.awt.Color(38, 38, 38));
-        pan_Menu.setPreferredSize(new java.awt.Dimension(300, 700));
-
-        pan_Toolbar.setBackground(new java.awt.Color(159, 232, 202));
-
-        lab_Friend.setBackground(new java.awt.Color(38, 38, 38));
-        lab_Friend.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lab_Friend.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon64 (1).png"))); // NOI18N
-
-        lab_Matching.setBackground(new java.awt.Color(38, 38, 38));
-        lab_Matching.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lab_Matching.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon64 (2).png"))); // NOI18N
-
-        lab_Comunity.setBackground(new java.awt.Color(38, 38, 38));
-        lab_Comunity.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lab_Comunity.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon64 (3).png"))); // NOI18N
-
-        lab_Chatting.setBackground(new java.awt.Color(38, 38, 38));
-        lab_Chatting.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lab_Chatting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon64 (4).png"))); // NOI18N
-
-        lab_Setting.setBackground(new java.awt.Color(51, 255, 204));
-        lab_Setting.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lab_Setting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon64 (5).png"))); // NOI18N
-
-        javax.swing.GroupLayout pan_ToolbarLayout = new javax.swing.GroupLayout(pan_Toolbar);
-        pan_Toolbar.setLayout(pan_ToolbarLayout);
-        pan_ToolbarLayout.setHorizontalGroup(
-            pan_ToolbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lab_Matching, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lab_Comunity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lab_Chatting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lab_Setting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lab_Friend, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        pan_ToolbarLayout.setVerticalGroup(
-            pan_ToolbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pan_ToolbarLayout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(lab_Friend, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(lab_Matching, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(lab_Comunity, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(lab_Chatting, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(lab_Setting, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(100, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout pan_MenuLayout = new javax.swing.GroupLayout(pan_Menu);
-        pan_Menu.setLayout(pan_MenuLayout);
-        pan_MenuLayout.setHorizontalGroup(
-            pan_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pan_MenuLayout.createSequentialGroup()
-                .addComponent(pan_Toolbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(200, Short.MAX_VALUE))
-        );
-        pan_MenuLayout.setVerticalGroup(
-            pan_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pan_Toolbar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        pan_Base.setPreferredSize(new java.awt.Dimension(1280, 720));
 
         pan_Title.setBackground(new java.awt.Color(159, 232, 202));
         pan_Title.setPreferredSize(new java.awt.Dimension(57, 20));
@@ -125,6 +57,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        but_Exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon_exit.png"))); // NOI18N
         but_Exit.setBorder(null);
         but_Exit.setContentAreaFilled(false);
         but_Exit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -135,6 +68,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        but_Maximize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon_max.png"))); // NOI18N
         but_Maximize.setBorder(null);
         but_Maximize.setContentAreaFilled(false);
         but_Maximize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -145,6 +79,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        but_Minimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon_min.png"))); // NOI18N
         but_Minimize.setBorder(null);
         but_Minimize.setContentAreaFilled(false);
         but_Minimize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -177,36 +112,24 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pan_Content.setBackground(new java.awt.Color(17, 17, 17));
-
-        javax.swing.GroupLayout pan_ContentLayout = new javax.swing.GroupLayout(pan_Content);
-        pan_Content.setLayout(pan_ContentLayout);
-        pan_ContentLayout.setHorizontalGroup(
-            pan_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 980, Short.MAX_VALUE)
-        );
-        pan_ContentLayout.setVerticalGroup(
-            pan_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        pan_Body.setBackground(new java.awt.Color(17, 17, 17));
+        pan_Body.setPreferredSize(new java.awt.Dimension(1280, 705));
+        pan_Body.setLayout(new java.awt.BorderLayout());
+        pan_Body.add(lobby1, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout pan_BaseLayout = new javax.swing.GroupLayout(pan_Base);
         pan_Base.setLayout(pan_BaseLayout);
         pan_BaseLayout.setHorizontalGroup(
             pan_BaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pan_Title, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
-            .addGroup(pan_BaseLayout.createSequentialGroup()
-                .addComponent(pan_Menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(pan_Content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(pan_Title, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
+            .addComponent(pan_Body, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pan_BaseLayout.setVerticalGroup(
             pan_BaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pan_BaseLayout.createSequentialGroup()
                 .addComponent(pan_Title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(pan_BaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pan_Menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pan_Content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(0, 0, 0)
+                .addComponent(pan_Body, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -284,15 +207,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton but_Exit;
     private javax.swing.JButton but_Maximize;
     private javax.swing.JButton but_Minimize;
-    private javax.swing.JLabel lab_Chatting;
-    private javax.swing.JLabel lab_Comunity;
-    private javax.swing.JLabel lab_Friend;
-    private javax.swing.JLabel lab_Matching;
-    private javax.swing.JLabel lab_Setting;
+    private main.Lobby lobby1;
     private javax.swing.JPanel pan_Base;
-    private javax.swing.JPanel pan_Content;
-    private javax.swing.JPanel pan_Menu;
+    private javax.swing.JPanel pan_Body;
     private javax.swing.JPanel pan_Title;
-    private javax.swing.JPanel pan_Toolbar;
     // End of variables declaration//GEN-END:variables
 }
