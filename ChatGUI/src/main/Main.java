@@ -1,9 +1,11 @@
 
 package main;
 
+
 import java.awt.Color;
 import swing.ComponentResizer;
 import java.awt.Dimension;
+import java.awt.PopupMenu;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 
@@ -34,17 +36,16 @@ public class Main extends javax.swing.JFrame {
         but_Maximize = new javax.swing.JButton();
         but_Minimize = new javax.swing.JButton();
         pan_Body = new javax.swing.JPanel();
-        lobby1 = new main.Lobby();
+        lobby = new main.Lobby();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         pan_Base.setBackground(new java.awt.Color(17, 17, 17));
         pan_Base.setPreferredSize(new java.awt.Dimension(1280, 720));
 
-        pan_Title.setBackground(new java.awt.Color(159, 232, 202));
+        pan_Title.setBackground(new java.awt.Color(20, 25, 20));
         pan_Title.setPreferredSize(new java.awt.Dimension(57, 20));
         pan_Title.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -115,7 +116,7 @@ public class Main extends javax.swing.JFrame {
         pan_Body.setBackground(new java.awt.Color(17, 17, 17));
         pan_Body.setPreferredSize(new java.awt.Dimension(1280, 705));
         pan_Body.setLayout(new java.awt.BorderLayout());
-        pan_Body.add(lobby1, java.awt.BorderLayout.CENTER);
+        pan_Body.add(lobby, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout pan_BaseLayout = new javax.swing.GroupLayout(pan_Base);
         pan_Base.setLayout(pan_BaseLayout);
@@ -207,7 +208,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton but_Exit;
     private javax.swing.JButton but_Maximize;
     private javax.swing.JButton but_Minimize;
-    private main.Lobby lobby1;
+    private main.Lobby lobby;
     private javax.swing.JPanel pan_Base;
     private javax.swing.JPanel pan_Body;
     private javax.swing.JPanel pan_Title;

@@ -1,6 +1,7 @@
 
 package main;
 
+import chat.Big_Chat;
 import javax.swing.GroupLayout;
 import static javax.swing.GroupLayout.Alignment.CENTER;
 import static javax.swing.SwingConstants.LEFT;
@@ -20,7 +21,8 @@ public class Lobby extends javax.swing.JLayeredPane {
         setLayout(new MigLayout("fillx, filly", "0[100!]0[fill, 200!]0[fill, 100%]0", "0[]0"));
         this.add(new Toolbar());
         this.add(new Menu());
-        this.add(new Content());
+        this.add(new Big_Chat());
+        //this.add(new chat.Test_Chat());
     }
     
     @SuppressWarnings("unchecked")
