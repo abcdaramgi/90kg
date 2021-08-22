@@ -12,11 +12,11 @@ public class Test_Form extends javax.swing.JPanel {
     }
     
     private void init(){
-        setLayout(new MigLayout("fillx, filly", "0[]5[]5[]0[]", ""));
-        this.add(new Test_Menu_Item());
-        for(int i = 0 ; i < 3 ; i++){
-            this.add(new Test_Select(), "wrap");
-        }
+        setLayout(new MigLayout("fillx, filly"));
+        this.add(new Test_Menu_Item(), "gapleft 0");
+//        for(int i = 0 ; i < 3 ; i++){
+//            this.add(new Test_Select(), "wrap");
+//        }
     }
     /**
      * This method is called from within the constructor to initialize the form.

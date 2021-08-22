@@ -32,6 +32,8 @@ public class Test_Item extends javax.swing.JLayeredPane {
 
         chat_Text1.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
+        setLayer(chat_Text1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
