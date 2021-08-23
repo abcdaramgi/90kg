@@ -14,8 +14,9 @@ public class Menu extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 51, 204));
+        setBackground(new java.awt.Color(30, 30, 30));
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("menu");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

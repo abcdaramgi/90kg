@@ -14,7 +14,7 @@ public class Content extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(0, 102, 255));
+        setBackground(new java.awt.Color(38, 38, 38));
 
         jLabel1.setText("content");
 

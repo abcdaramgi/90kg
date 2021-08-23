@@ -28,25 +28,27 @@ public class Test_Item extends javax.swing.JLayeredPane {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
         chat_Text2 = new chat.Chat_Text();
 
+        chat_Text2.setFont(new java.awt.Font("굴림", 0, 12)); // NOI18N
         chat_Text2.setForeground(new java.awt.Color(255, 255, 255));
         chat_Text2.setBgColor(new java.awt.Color(159, 232, 202));
         chat_Text2.setBorderColor(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setViewportView(chat_Text2);
 
-        setLayer(chat_Text2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(chat_Text2, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 1, Short.MAX_VALUE)
-                .addComponent(chat_Text2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -54,5 +56,6 @@ public class Test_Item extends javax.swing.JLayeredPane {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private chat.Chat_Text chat_Text2;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

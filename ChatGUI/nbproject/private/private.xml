@@ -5,24 +5,26 @@
         <group>
             <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/main/Menu.java</file>
             <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/swing/ComponentResizer.java</file>
+            <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/chat/Chat_Cloud.java</file>
+            <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/chat/Test_Chat.java</file>
             <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/main/Main.java</file>
-            <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/main/Lobby_sibal.java</file>
-            <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/image/icon64%20(3).png</file>
+            <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/chat/Chat_Body.java</file>
             <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/swing/ScrollBar.java</file>
-            <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/chat/Front.java</file>
+            <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/chat/Small_Chat.java</file>
+            <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/chat/Chat_Title.java</file>
             <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/main/Content.java</file>
-            <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/image/icon_min.png</file>
             <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/main/Toolbar.java</file>
+            <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/component/Toolbar_Button.java</file>
             <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/chat/Test_Item.java</file>
-            <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/image/icon_exit.png</file>
             <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/main/Lobby.java</file>
-            <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/image/icon64%20(5).png</file>
-            <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/image/icon64%20(2).png</file>
             <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/swing/ModernScrollBarUI.java</file>
-            <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/image/icon64%20(1).png</file>
-            <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/image/icon_max.png</file>
+            <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/chat/Big_Chat.java</file>
+            <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/chat/Chat_My.java</file>
             <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/chat/Chat_Text.java</file>
-            <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/image/icon64%20(4).png</file>
+            <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/component/Button.java</file>
+            <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/component/ChatButton.java</file>
+            <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/chat/Chat_Bottom.java</file>
+            <file>file:/C:/Users/Admin/Desktop/90kg/ChatGUI/src/swing/JIMSendTextPane.java</file>
         </group>
     </open-files>
 </project-private>
