@@ -36,6 +36,7 @@ public class Main extends javax.swing.JFrame {
         but_Maximize = new javax.swing.JButton();
         but_Minimize = new javax.swing.JButton();
         pan_Body = new javax.swing.JPanel();
+        lobby = new main.Lobby();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -115,6 +116,7 @@ public class Main extends javax.swing.JFrame {
         pan_Body.setBackground(new java.awt.Color(17, 17, 17));
         pan_Body.setPreferredSize(new java.awt.Dimension(1280, 705));
         pan_Body.setLayout(new java.awt.BorderLayout());
+        pan_Body.add(lobby, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout pan_BaseLayout = new javax.swing.GroupLayout(pan_Base);
         pan_Base.setLayout(pan_BaseLayout);
@@ -146,29 +148,29 @@ public class Main extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void pan_TitleMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pan_TitleMousePressed
-        pX = evt.getX();
-        pY = evt.getY();
-    }//GEN-LAST:event_pan_TitleMousePressed
-
+    
+    private int pX, pY;
     private void pan_TitleMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pan_TitleMouseDragged
         this.setLocation(this.getLocation().x + evt.getX() - pX, this.getLocation().y + evt.getY() - pY);
     }//GEN-LAST:event_pan_TitleMouseDragged
+
+    private void pan_TitleMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pan_TitleMousePressed
+                    pX = evt.getX();
+                    pY = evt.getY();
+    }//GEN-LAST:event_pan_TitleMousePressed
 
     private void but_MinimizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_MinimizeActionPerformed
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_but_MinimizeActionPerformed
 
     private void but_MaximizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_MaximizeActionPerformed
-
+       
     }//GEN-LAST:event_but_MaximizeActionPerformed
 
     private void but_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_ExitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_but_ExitActionPerformed
 
-    
-    private int pX, pY;
   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -206,6 +208,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton but_Exit;
     private javax.swing.JButton but_Maximize;
     private javax.swing.JButton but_Minimize;
+    private main.Lobby lobby;
     private javax.swing.JPanel pan_Base;
     private javax.swing.JPanel pan_Body;
     private javax.swing.JPanel pan_Title;
