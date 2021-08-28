@@ -12,14 +12,11 @@ public class ChatButton extends Button {
         super();
         setIcon("/image/icon64 (4).png");
         startChat();
-        
-        
-        //button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon100_gray (1).png"))); // NOI18N
     }
     
     
     public void startChat() {
-        System.out.println("gggggggggggggggg");
+       
     }
 
     @SuppressWarnings("unchecked")

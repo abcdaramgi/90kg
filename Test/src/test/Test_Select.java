@@ -11,12 +11,8 @@ public class Test_Select extends javax.swing.JPanel {
         initComponents();
     }
 
-    private void init(){
-        addMouseListener(new MouseAdapter()){
-            @Override
-            public void 
-    }
-    }
+
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

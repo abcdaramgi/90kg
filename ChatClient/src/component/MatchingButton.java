@@ -1,16 +1,24 @@
 
 package component;
 
+import static java.awt.SystemColor.menu;
+import panel.Menu;
+
 
 public class MatchingButton extends Button {
 
     public MatchingButton() {
-        initComponents();
+        super();
+        setIcon("/image/icon64 (2).png");
         startMatching();
     }
     
-    public void startMatching() {
     
+    
+    public void startMatching() {
+        if(buttonClicked) {
+            
+        }
     }
 
     @SuppressWarnings("unchecked")

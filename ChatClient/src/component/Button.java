@@ -2,6 +2,7 @@
 package component;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.Icon;
@@ -17,33 +18,40 @@ public class Button extends javax.swing.JPanel {
         init();
     }
     
+
+    public void cancelButton(boolean clicked) {
+        if(!clicked){
+            buttonClicked = false;
+            setBackground(new Color(32, 38, 35));
+        }
+    }
     
     public void setIcon(String path){
-        System.out.println("set Icon");
         button.setIcon(new javax.swing.ImageIcon(getClass().getResource(path)));
     }
     
     public void init(){
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         
         addMouseListener(new MouseAdapter(){
             @Override  
             public void mouseEntered(MouseEvent e) {
                 if(!buttonClicked){
-                    setBackground(new Color(28,32,28));
+                    setBackground(new Color(36, 42, 39));
                 }
                 else {
-                    setBackground(new Color(144,144,144));
+
                 }
             }
             
             @Override
             public void mouseExited(MouseEvent e) {
                 if(!buttonClicked){
-                setBackground(new Color(20,24,20));
+                    setBackground(new Color(32, 38, 35));
                 }
                 else {
-                    setBackground(new Color(98,98,98));
+                    setBackground(new Color(40, 46, 44));
                 }
             }
         });
@@ -53,7 +61,7 @@ public class Button extends javax.swing.JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(!buttonClicked) {
-                    setBackground(new Color(111,111,111));
+                    setBackground(new Color(38, 44, 42));
                     buttonClicked = true;
                 }
                 else {
@@ -65,6 +73,16 @@ public class Button extends javax.swing.JPanel {
         
     }
     
+    @Override
+    protected void paintComponent(Graphics grphcs)  {
+        super.paintComponent(grphcs);
+        if(buttonClicked) {
+            grphcs.setColor(new Color(159, 232, 202));
+            grphcs.fillRect(4 - getWidth(), 0 , getWidth(), getHeight());
+        }
+
+    }
+ 
     
     
     @SuppressWarnings("unchecked")
@@ -73,11 +91,11 @@ public class Button extends javax.swing.JPanel {
 
         button = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(0, 0, 0));
+        setBackground(new java.awt.Color(20, 24, 20));
         setPreferredSize(new java.awt.Dimension(100, 100));
 
         button.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon100_gray (1).png"))); // NOI18N
+        button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon64 (1).png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -95,4 +113,6 @@ public class Button extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel button;
     // End of variables declaration//GEN-END:variables
+
+
 }
