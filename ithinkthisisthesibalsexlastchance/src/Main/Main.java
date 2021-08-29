@@ -18,7 +18,7 @@ public class Main extends javax.swing.JFrame {
     public void init() {
         ComponentResizer com = new ComponentResizer();
         com.registerComponent(this);
-        com.setMinimumSize(new Dimension(300, 300));
+        com.setMinimumSize(new Dimension(600, 600));
         com.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
         com.setSnapSize(new Dimension(10, 10));
     }

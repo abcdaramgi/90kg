@@ -15,7 +15,8 @@ public class Body extends javax.swing.JLayeredPane {
     public void init() {
         setLayout(new MigLayout("fillx, filly", "0[fill]00[fill, 100%]0", "0[fill]0"));
         add(new Menu(), "w 200:200:200, h 500:615:");
-        add(new Content(), "w 300:800: , h 500:615:");
+        //add(new Chat(), "w 300:800: , h 500:615:");
+        add(new Match(), "w 300:800: , h 500:615:");
     }
 
 

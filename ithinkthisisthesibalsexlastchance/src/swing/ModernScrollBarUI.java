@@ -19,7 +19,7 @@ public class ModernScrollBarUI extends BasicScrollBarUI {
     private static final int SCROLL_BAR_ALPHA_ROLLOVER = 100;
     private static final int SCROLL_BAR_ALPHA = 50;
     private static final int THUMB_SIZE = 8;
-    private static final Color THUMB_COLOR = new Color(255,255,255);
+    private static final Color THUMB_COLOR = Color.WHITE;
     
 
     public ModernScrollBarUI() {

@@ -1,6 +1,11 @@
-
 package swing;
 
+import java.awt.Color;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Insets;
+import java.awt.RenderingHints;
 import javax.swing.JTextPane;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.BoxView;
@@ -16,66 +21,87 @@ import javax.swing.text.ViewFactory;
 
 public class JIMSendTextPane extends JTextPane {
 
-	//inner class
-	//The following inner classes are all used to implement automatic forced line breaks
+    public String getHintText() {
+        return hintText;
+    }
 
-	private class WarpEditorKit extends StyledEditorKit {
+    public void setHintText(String hintText) {
+        this.hintText = hintText;
+    }
 
-		private ViewFactory defaultFactory = new WarpColumnFactory ();
+    private String hintText = "";
 
-		@Override
-		public ViewFactory getViewFactory () {
-			return defaultFactory;
-		}
-	}
+    private class WarpEditorKit extends StyledEditorKit {
 
-	private class WarpColumnFactory implements ViewFactory {
+        private ViewFactory defaultFactory = new WarpColumnFactory();
 
-		public View create (Element elem) {
-			String kind = elem.getName ();
-			if (kind != null) {
-				if (kind.equals (AbstractDocument.ContentElementName)) {
-					return new WarpLabelView (elem);
-				} else if (kind.equals (AbstractDocument.ParagraphElementName)) {
-					return new ParagraphView (elem);
-				} else if (kind.equals (AbstractDocument.SectionElementName)) {
-					return new BoxView (elem, View.Y_AXIS);
-				} else if (kind.equals (StyleConstants.ComponentElementName)) {
-					return new ComponentView (elem);
-				} else if (kind.equals (StyleConstants.IconElementName)) {
-					return new IconView (elem);
-				}
-			}
+        @Override
+        public ViewFactory getViewFactory() {
+            return defaultFactory;
+        }
+    }
 
-			//default to text display
-			return new LabelView (elem);
-		}
-	}
+    private class WarpColumnFactory implements ViewFactory {
 
-	private class WarpLabelView extends LabelView {
+        public View create(Element elem) {
+            String kind = elem.getName();
+            if (kind != null) {
+                if (kind.equals(AbstractDocument.ContentElementName)) {
+                    return new WarpLabelView(elem);
+                } else if (kind.equals(AbstractDocument.ParagraphElementName)) {
+                    return new ParagraphView(elem);
+                } else if (kind.equals(AbstractDocument.SectionElementName)) {
+                    return new BoxView(elem, View.Y_AXIS);
+                } else if (kind.equals(StyleConstants.ComponentElementName)) {
+                    return new ComponentView(elem);
+                } else if (kind.equals(StyleConstants.IconElementName)) {
+                    return new IconView(elem);
+                }
+            }
 
-		public WarpLabelView (Element elem) {
-			super (elem);
-		}
+            //default to text display
+            return new LabelView(elem);
+        }
+    }
 
-		@Override
-		public float getMinimumSpan (int axis) {
-			switch (axis) {
-				case View.X_AXIS:
-					return 0;
-				case View.Y_AXIS:
-					return super.getMinimumSpan (axis);
-				default:
-					throw new IllegalArgumentException ("Invalid axis:" + axis);
-			}
-		}
-	}
+    private class WarpLabelView extends LabelView {
 
-	//this category
+        public WarpLabelView(Element elem) {
+            super(elem);
+        }
 
-	//Constructor
-	public JIMSendTextPane () {
-		super ();
-		this.setEditorKit (new WarpEditorKit ());
-	}
+        @Override
+        public float getMinimumSpan(int axis) {
+            switch (axis) {
+                case View.X_AXIS:
+                    return 0;
+                case View.Y_AXIS:
+                    return super.getMinimumSpan(axis);
+                default:
+                    throw new IllegalArgumentException("Invalid axis:" + axis);
+            }
+        }
+    }
+
+    public JIMSendTextPane() {
+        super();
+        this.setEditorKit(new WarpEditorKit());
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        if (getText().length() == 0 && !hintText.equals("")) {
+            int h = getHeight();
+            ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+            Insets ins = getInsets();
+            FontMetrics fm = g.getFontMetrics();
+            int c0 = getBackground().getRGB();
+            int c1 = getForeground().getRGB();
+            int m = 0xfefefefe;
+            int c2 = ((c0 & m) >>> 1) + ((c1 & m) >>> 1);
+            g.setColor(new Color(c2, true));
+            g.drawString(hintText, ins.left, h / 2 + fm.getAscent() / 2 - 2);
+        }
+    }
 }
