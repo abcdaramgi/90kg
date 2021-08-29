@@ -27,6 +27,7 @@ public class Menu extends javax.swing.JPanel {
     public void showMatching() {
         friend.removeAll();
         refreshList();
+        
     }
     
     public void showChatting() {
@@ -35,11 +36,13 @@ public class Menu extends javax.swing.JPanel {
             friend.add(new UserItem("노랑통닭" + i, "ㅎㅇ"), "wrap");
         }
         refreshList();
+        
     }
 
     private void refreshList() {
         friend.repaint();
         friend.revalidate();
+        
     }
     
 

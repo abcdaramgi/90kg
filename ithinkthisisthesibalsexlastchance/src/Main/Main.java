@@ -9,7 +9,8 @@ import swing.ComponentResizer;
 
 public class Main extends javax.swing.JFrame {
     
-
+    int swap = 0;
+    
     public Main() {
         initComponents();
         init();
@@ -18,7 +19,7 @@ public class Main extends javax.swing.JFrame {
     public void init() {
         ComponentResizer com = new ComponentResizer();
         com.registerComponent(this);
-        com.setMinimumSize(new Dimension(600, 600));
+        com.setMinimumSize(new Dimension(600, 640));
         com.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
         com.setSnapSize(new Dimension(10, 10));
     }
@@ -34,7 +35,17 @@ public class Main extends javax.swing.JFrame {
         but_Exit = new javax.swing.JButton();
         but_Max = new javax.swing.JButton();
         but_Min = new javax.swing.JButton();
-        body1 = new panel.Body();
+        testp = new javax.swing.JPanel();
+        qudtls = new javax.swing.JPanel();
+        chat1 = new panel.Chat();
+        match1 = new panel.Match();
+        testm = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        testMenuM = new panel.testMenuM();
+        testMenuC = new panel.testMenuC();
+        jPanel2 = new javax.swing.JPanel();
+        matchbutton = new chatcomponent.Menubutton();
+        chatbutton = new chatcomponent.Menubutton();
 
         lpan_Body.setLayout(new java.awt.BorderLayout());
 
@@ -105,7 +116,7 @@ public class Main extends javax.swing.JFrame {
         pan_TitleLayout.setHorizontalGroup(
             pan_TitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pan_TitleLayout.createSequentialGroup()
-                .addGap(0, 925, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(but_Min, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(but_Max, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -119,20 +130,117 @@ public class Main extends javax.swing.JFrame {
             .addComponent(but_Min, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        testp.setLayout(new java.awt.CardLayout());
+
+        qudtls.setBackground(new java.awt.Color(40, 46, 44));
+
+        javax.swing.GroupLayout qudtlsLayout = new javax.swing.GroupLayout(qudtls);
+        qudtls.setLayout(qudtlsLayout);
+        qudtlsLayout.setHorizontalGroup(
+            qudtlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 800, Short.MAX_VALUE)
+        );
+        qudtlsLayout.setVerticalGroup(
+            qudtlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 620, Short.MAX_VALUE)
+        );
+
+        testp.add(qudtls, "card4");
+        testp.add(chat1, "card2");
+        testp.add(match1, "card3");
+
+        testm.setBackground(new java.awt.Color(40, 46, 44));
+        testm.setPreferredSize(new java.awt.Dimension(200, 82));
+
+        jPanel1.setBackground(new java.awt.Color(40, 46, 44));
+        jPanel1.setLayout(new java.awt.CardLayout());
+        jPanel1.add(testMenuM, "card3");
+        jPanel1.add(testMenuC, "card2");
+
+        jPanel2.setBackground(new java.awt.Color(40, 46, 44));
+        jPanel2.setLayout(new java.awt.GridLayout(2, 1));
+
+        matchbutton.setBorder(null);
+        matchbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/100x menu0.png"))); // NOI18N
+        matchbutton.setIconNormal(new javax.swing.ImageIcon(getClass().getResource("/image/100x menu0.png"))); // NOI18N
+        matchbutton.setIconSelected(new javax.swing.ImageIcon(getClass().getResource("/image/100x menu2.png"))); // NOI18N
+        matchbutton.setMaximumSize(new java.awt.Dimension(200, 41));
+        matchbutton.setMinimumSize(new java.awt.Dimension(200, 41));
+        matchbutton.setPreferredSize(new java.awt.Dimension(200, 41));
+        matchbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                matchbuttonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                matchbuttonMouseExited(evt);
+            }
+        });
+        matchbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                matchbuttonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(matchbutton);
+
+        chatbutton.setBorder(null);
+        chatbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/100x menu3.png"))); // NOI18N
+        chatbutton.setIconNormal(new javax.swing.ImageIcon(getClass().getResource("/image/100x menu3.png"))); // NOI18N
+        chatbutton.setIconSelected(new javax.swing.ImageIcon(getClass().getResource("/image/100x menu5.png"))); // NOI18N
+        chatbutton.setMaximumSize(new java.awt.Dimension(200, 41));
+        chatbutton.setMinimumSize(new java.awt.Dimension(200, 41));
+        chatbutton.setPreferredSize(new java.awt.Dimension(200, 41));
+        chatbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                chatbuttonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                chatbuttonMouseExited(evt);
+            }
+        });
+        chatbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chatbuttonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(chatbutton);
+
+        javax.swing.GroupLayout testmLayout = new javax.swing.GroupLayout(testm);
+        testm.setLayout(testmLayout);
+        testmLayout.setHorizontalGroup(
+            testmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(testmLayout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        testmLayout.setVerticalGroup(
+            testmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, testmLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         javax.swing.GroupLayout pan_BodyLayout = new javax.swing.GroupLayout(pan_Body);
         pan_Body.setLayout(pan_BodyLayout);
         pan_BodyLayout.setHorizontalGroup(
             pan_BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pan_Title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(body1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(pan_BodyLayout.createSequentialGroup()
+                .addComponent(testm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(testp, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE))
         );
         pan_BodyLayout.setVerticalGroup(
             pan_BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pan_BodyLayout.createSequentialGroup()
                 .addComponent(pan_Title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(body1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addGroup(pan_BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(testp, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(pan_BodyLayout.createSequentialGroup()
+                        .addGap(0, 0, 0)
+                        .addComponent(testm, javax.swing.GroupLayout.PREFERRED_SIZE, 620, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout pan_BorderLayout = new javax.swing.GroupLayout(pan_Border);
@@ -143,7 +251,7 @@ public class Main extends javax.swing.JFrame {
         );
         pan_BorderLayout.setVerticalGroup(
             pan_BorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pan_Body, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pan_Body, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -154,7 +262,7 @@ public class Main extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pan_Border, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pan_Border, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE)
         );
 
         pack();
@@ -168,7 +276,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_but_ExitActionPerformed
 
     private void but_MaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_MaxActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_but_MaxActionPerformed
 
     private void but_MinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_MinActionPerformed
@@ -184,6 +292,62 @@ public class Main extends javax.swing.JFrame {
         pX = evt.getX();
         pY = evt.getY();
     }//GEN-LAST:event_pan_TitleMousePressed
+
+    private void matchbuttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_matchbuttonMouseEntered
+        if(!matchbutton.isSelected()) {
+            matchbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/100x menu1.png")));
+        }
+    }//GEN-LAST:event_matchbuttonMouseEntered
+
+    private void matchbuttonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_matchbuttonMouseExited
+        if(!matchbutton.isSelected()) {
+            matchbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/100x menu0.png")));
+        }
+    }//GEN-LAST:event_matchbuttonMouseExited
+
+    private void matchbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matchbuttonActionPerformed
+        if(!matchbutton.isSelected()) {
+            matchbutton.setSelected(true);
+            chatbutton.setSelected(false);
+            
+            chat1.setVisible(false);
+            match1.setVisible(true);
+            
+            testMenuC.setVisible(false);
+            testMenuM.setVisible(true);
+            
+            qudtls.setVisible(false);
+            
+        }
+    }//GEN-LAST:event_matchbuttonActionPerformed
+
+    private void chatbuttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chatbuttonMouseEntered
+        if(!chatbutton.isSelected()) {
+            chatbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/100x menu4.png")));
+        }
+    }//GEN-LAST:event_chatbuttonMouseEntered
+
+    private void chatbuttonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chatbuttonMouseExited
+        if(!chatbutton.isSelected()) {
+            chatbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/100x menu3.png")));
+        }
+    }//GEN-LAST:event_chatbuttonMouseExited
+
+    private void chatbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chatbuttonActionPerformed
+        if(!chatbutton.isSelected()) {
+            matchbutton.setSelected(false);
+            chatbutton.setSelected(true);
+            
+            chat1.setVisible(true);
+            match1.setVisible(false);
+            
+            testMenuC.setVisible(true);
+            testMenuM.setVisible(false);
+            
+            qudtls.setVisible(false);
+            
+        }
+    }//GEN-LAST:event_chatbuttonActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -218,13 +382,23 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private panel.Body body1;
     private javax.swing.JButton but_Exit;
     private javax.swing.JButton but_Max;
     private javax.swing.JButton but_Min;
+    private panel.Chat chat1;
+    private chatcomponent.Menubutton chatbutton;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLayeredPane lpan_Body;
+    private panel.Match match1;
+    private chatcomponent.Menubutton matchbutton;
     private javax.swing.JPanel pan_Body;
     private javax.swing.JPanel pan_Border;
     private javax.swing.JPanel pan_Title;
+    private javax.swing.JPanel qudtls;
+    private panel.testMenuC testMenuC;
+    private panel.testMenuM testMenuM;
+    private javax.swing.JPanel testm;
+    private javax.swing.JPanel testp;
     // End of variables declaration//GEN-END:variables
 }

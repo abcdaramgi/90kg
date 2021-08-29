@@ -40,9 +40,14 @@ public class Menubutton extends JButton{
         super.setSelected(bln);
         if (bln) {
             setIcon(iconSelected);
+            swap();
         } else {
             setIcon(iconNormal);
         }   
+    }
+    
+    public void swap() {
+        
     }
     
     private void init() {
