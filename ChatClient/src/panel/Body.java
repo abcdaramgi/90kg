@@ -13,16 +13,18 @@ public class Body extends javax.swing.JPanel {
     }
     
     public void init() {
-        setLayout(new MigLayout("fillx, filly", "0[fill,0!]0[fill,100!]0[fill, 100%]0", "0[fill]0"));
-        add(new Toolbar(), "w 100:100:100, h 320:695:");
-        add(new Menu(), "w 300:300:300, h 320:695:");
-        add(new Content(), "w 880:880: , h 320:695:");
+        setLayout(new MigLayout("fillx, filly", "0[fill, 100!]0[fill,200!]0[fill, 100%]0", "0[fill]0"));
+        add(new Toolbar(), "w 100:100:100, h 500:695:");
+        add(new Menu(), "w 200:200:200, h 500:695:");
+        add(new Content(), "w 300:880: , h 500:695:");
     }
 
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
+        setBackground(new java.awt.Color(40, 46, 44));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

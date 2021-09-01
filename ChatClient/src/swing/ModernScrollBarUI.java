@@ -58,6 +58,12 @@ public class ModernScrollBarUI extends BasicScrollBarUI {
         graphics2D.fillRect(x, y, width, height);
         graphics2D.dispose();
     }
+    
+    //?
+    @Override
+    protected void setThumbBounds(int x, int y, int width, int height) {
+        super.setThumbBounds(x, y, width, height);
+    }
 
     private static class InvisibleScrollBarButton extends JButton {
 

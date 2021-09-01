@@ -5,7 +5,8 @@ package component;
 public class SettingButton extends Button {
 
     public SettingButton() {
-        initComponents();
+        super();
+        setIcon("/image/icon64 (5).png");
         startSetting();
     }
     

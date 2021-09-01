@@ -18,7 +18,7 @@ public class Main extends javax.swing.JFrame {
     public void init() {      
         ComponentResizer com = new ComponentResizer();
         com.registerComponent(this);
-        com.setMinimumSize(new Dimension(100, 100));
+        com.setMinimumSize(new Dimension(600, 525));
         com.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
         com.setSnapSize(new Dimension(10, 10));
     }
@@ -39,6 +39,10 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+
+        pan_Border.setBackground(new java.awt.Color(40, 46, 44));
+
+        pan_Body.setBackground(new java.awt.Color(40, 46, 44));
 
         pan_Title.setBackground(new java.awt.Color(159, 232, 202));
         pan_Title.setMinimumSize(new java.awt.Dimension(75, 100));
