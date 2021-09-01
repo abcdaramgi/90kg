@@ -1,0 +1,11 @@
+Managers/DBConnector.class
+Network/ClientSocket.class
+Util/Debug.class
+Managers/ClientSocketManager$SingleTonHolder.class
+Data/Client.class
+Data/User.class
+Managers/GenerateManager.class
+Managers/ClientSocketManager.class
+Managers/DBConnector$SingleTonHolder.class
+com/sang/generateclient/GenerateClient.class
+Network/ClientSocket$IncomingReader.class
