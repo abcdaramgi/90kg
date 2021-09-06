@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.awt.RenderingHints;
+import java.awt.event.KeyEvent;
 import javax.swing.JTextPane;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.BoxView;

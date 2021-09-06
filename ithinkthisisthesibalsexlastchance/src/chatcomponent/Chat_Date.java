@@ -1,14 +1,29 @@
 package chatcomponent;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class Chat_Date extends javax.swing.JLayeredPane {
 
     public Chat_Date() {
         initComponents();
+        setDate();
     }
 
-    public void setDate(String date) {
-        lab_date.setText(date);
+    public void setDate() {
+        LocalDate date = LocalDate.now();
+        
+        int y = date.getYear();
+        int m = date.getMonthValue();
+        int d = date.getDayOfMonth();
+        
+        lab_date.setText(" " + y + "년 " + m + "월 " + d + "일 ");        
     }
+    
+  
+ 
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

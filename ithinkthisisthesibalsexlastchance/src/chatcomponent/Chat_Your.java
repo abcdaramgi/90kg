@@ -1,6 +1,7 @@
 package chatcomponent;
 
 import java.awt.Color;
+import java.time.LocalTime;
 import javax.swing.Icon;
 
 public class Chat_Your extends javax.swing.JLayeredPane {
@@ -8,7 +9,6 @@ public class Chat_Your extends javax.swing.JLayeredPane {
     public Chat_Your() {
         initComponents();
         txt.setBackground(new Color(255, 255, 255));
-        rtime.setText("10:30 PM");
     }
 
     public void setText(String text) {
@@ -19,8 +19,21 @@ public class Chat_Your extends javax.swing.JLayeredPane {
         }
     }
 
-    public void setTime(String time) {
-        rtime.setText(time);
+    public void setTime() {
+        LocalTime time = LocalTime.now();
+        int h = time.getHour();
+        int m = time.getMinute();
+        String noon;
+        
+        if(h <= 12) {
+            noon = "AM";
+        }
+        else {
+            h -= 12;
+            noon = "PM";
+        }
+            
+        rtime.setText(h + ":" + m + " " + noon);
     }
     
     public void setImage(Icon... image) {

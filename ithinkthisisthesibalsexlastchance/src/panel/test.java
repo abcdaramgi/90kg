@@ -41,8 +41,8 @@ public class test extends javax.swing.JPanel {
         random = new matchcomponent.Matchbutton();
         choose = new matchcomponent.Matchbutton();
         pan_body = new javax.swing.JPanel();
-        choosematch = new matchcomponent.Match_Body_Choose();
         randommatch = new matchcomponent.Match_Body_Random();
+        choosematch = new matchcomponent.Match_Body_Choose();
 
         setBackground(new java.awt.Color(37, 41, 39));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
@@ -53,12 +53,12 @@ public class test extends javax.swing.JPanel {
         pan_title.setPreferredSize(new java.awt.Dimension(601, 82));
         pan_title.setLayout(new javax.swing.BoxLayout(pan_title, javax.swing.BoxLayout.X_AXIS));
 
-        random.setForeground(new java.awt.Color(153, 153, 153));
         random.setText("랜덤매칭");
         random.setFont(new java.awt.Font("SB 어그로 Bold", 0, 18)); // NOI18N
         random.setMaximumSize(new java.awt.Dimension(800, 82));
         random.setMinimumSize(new java.awt.Dimension(105, 82));
         random.setPreferredSize(new java.awt.Dimension(400, 82));
+        random.setSelected(true);
         random.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 randomActionPerformed(evt);
@@ -82,8 +82,8 @@ public class test extends javax.swing.JPanel {
         add(pan_title);
 
         pan_body.setLayout(new java.awt.CardLayout());
-        pan_body.add(choosematch, "card2");
         pan_body.add(randommatch, "card3");
+        pan_body.add(choosematch, "card2");
 
         add(pan_body);
     }// </editor-fold>//GEN-END:initComponents

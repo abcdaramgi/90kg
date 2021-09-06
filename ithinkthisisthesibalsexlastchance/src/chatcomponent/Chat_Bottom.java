@@ -55,11 +55,14 @@ public class Chat_Bottom extends javax.swing.JPanel {
                             txt.grabFocus();
                             refresh();
                         } else {
+                            txt.setText("");
                             txt.grabFocus();
+                            revalidate();
                         }   
                     }
                     
                     else{
+                        
                         revalidate();
                     }
                         

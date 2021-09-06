@@ -15,7 +15,7 @@ public class Chat_Body extends javax.swing.JPanel {
     public Chat_Body() {
         initComponents();
         init();
-        addDate("2021년 08월 28일 토요일");
+        addDate();
 
     }
 
@@ -42,9 +42,8 @@ public class Chat_Body extends javax.swing.JPanel {
         body.revalidate();
     }
 
-    public void addDate(String date) {
+    public void addDate() {
         Chat_Date item = new Chat_Date();
-        item.setDate(date);
         body.add(item, "wrap, al center");
         body.repaint();
         body.revalidate();

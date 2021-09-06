@@ -14,7 +14,6 @@ public class testMenuC extends javax.swing.JPanel {
     public testMenuC() {
         initComponents();
         init();
-        showChatting();
     }
 
     private void init() {

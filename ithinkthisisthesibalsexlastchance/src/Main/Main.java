@@ -142,7 +142,7 @@ public class Main extends javax.swing.JFrame {
         );
         qudtlsLayout.setVerticalGroup(
             qudtlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 620, Short.MAX_VALUE)
+            .addGap(0, 615, Short.MAX_VALUE)
         );
 
         testp.add(qudtls, "card4");
@@ -153,6 +153,7 @@ public class Main extends javax.swing.JFrame {
         testm.setPreferredSize(new java.awt.Dimension(200, 82));
 
         jPanel1.setBackground(new java.awt.Color(40, 46, 44));
+        jPanel1.setPreferredSize(new java.awt.Dimension(200, 533));
         jPanel1.setLayout(new java.awt.CardLayout());
         jPanel1.add(testMenuM, "card3");
         jPanel1.add(testMenuC, "card2");
@@ -219,7 +220,7 @@ public class Main extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pan_BodyLayout = new javax.swing.GroupLayout(pan_Body);
@@ -238,9 +239,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(pan_Title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(pan_BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(testp, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(pan_BodyLayout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(testm, javax.swing.GroupLayout.PREFERRED_SIZE, 620, Short.MAX_VALUE))))
+                    .addComponent(testm, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout pan_BorderLayout = new javax.swing.GroupLayout(pan_Border);
@@ -251,7 +250,7 @@ public class Main extends javax.swing.JFrame {
         );
         pan_BorderLayout.setVerticalGroup(
             pan_BorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pan_Body, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE)
+            .addComponent(pan_Body, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -262,7 +261,7 @@ public class Main extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pan_Border, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE)
+            .addComponent(pan_Border, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -346,6 +345,7 @@ public class Main extends javax.swing.JFrame {
             
             qudtls.setVisible(false);
             
+            testMenuC.showChatting();
         }
     }//GEN-LAST:event_chatbuttonActionPerformed
 
