@@ -5,14 +5,12 @@
  */
 package Data;
 
-import Network.SocketManager;
 import Util.Debug;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 
 /**
  *
@@ -27,6 +25,7 @@ public class Client {
     private int port;
     Socket clientSocket;
     public Client connectedClient;
+    public MatchingCondition matchingCondition;
 
     public int status = 0;
     public static final int ONLINE = 0;

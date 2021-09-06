@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class ClientSocketManager {
     private static ClientSocketManager instance;
-    ArrayList<ClientSocket> clients;
+    public ArrayList<ClientSocket> clients;
     
     private ClientSocketManager(){
         clients = new ArrayList<ClientSocket>();

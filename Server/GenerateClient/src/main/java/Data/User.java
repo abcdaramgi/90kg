@@ -15,7 +15,7 @@ public class User {
     private String univ;
     private String major;
     private String gender;
-    private int age;
+    private String age;
 
     private boolean isOnline = false;
     //--------------------------------------------------------------------------------------------//
@@ -26,8 +26,8 @@ public class User {
         this.nickname = "sangyun";
         this.univ = "계명대";
         this.major = "컴퓨터공학";
-        this.gender = "남";
-        this.age = 27;
+        this.gender = "M";
+        this.age = "27";
     }
     public User(String id){
         this();
@@ -54,7 +54,7 @@ public class User {
         this.gender = gender;
     }
 
-    public User(String id, String nickname, String univ, String major, String gender, int age){
+    public User(String id, String nickname, String univ, String major, String gender, String age){
         this(id, nickname, univ, major, gender);
         this.age = age;
     }
@@ -115,11 +115,11 @@ public class User {
         this.univ = univ;
     }
     
-    public int getAge() {
+    public String getAge() {
         return this.age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 }

@@ -6,7 +6,6 @@
 package Network;
 
 import Data.Client;
-import Data.Matching;
 import Data.MatchingCondition;
 import Data.User;
 import Util.Debug;
@@ -18,6 +17,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.simple.JSONObject;
@@ -31,7 +32,8 @@ import org.json.simple.parser.ParseException;
 public class SocketManager implements Runnable {
     private static SocketManager instance;
     public ArrayList<Client> clients;
-    public ArrayList<Client> matchingClients = new ArrayList<Client>();
+    public Queue<Client> matchingQueue = new LinkedList<Client>();
+    public ArrayList<Client> premiumUsers = new ArrayList<Client>();
     private ServerSocket serverSocket;
     int port;
     int clientCount = 0;
@@ -72,28 +74,179 @@ public class SocketManager implements Runnable {
             ex.printStackTrace();
         }
     }
-
     // --------------------------------------------------------------------------------------------//
-    // singleton pattern
+    // ClientHandler (내부 클래스) 인터페이스 (runnable)
     // --------------------------------------------------------------------------------------------//
-    private static class SingleTonHolder {
-        private static final SocketManager instance = new SocketManager();
-    }
+    public class ClientHandler implements Runnable {
+        BufferedReader reader;
+        Socket socket;
 
-    public static SocketManager getInstance() {
-        return SingleTonHolder.instance;
-    }
+        public ClientHandler(Socket clientSocket) {
+            try {
+                socket = clientSocket;
+                InputStreamReader isReader = new InputStreamReader(socket.getInputStream());
+                reader = new BufferedReader(isReader);
 
-    public void printClients() {
-        Debug.log("printClients");
-        for (Client c : clients) {
-            Debug.log("client : " + c.getUser());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        // ----------------------------------------------------------------------------------------//
+        // 클라이언트 소켓이 read 하는 부분
+        // 클라이언트 소켓의 쓰레드가 수행하는 행동
+
+        @Override
+        public void run() {
+            String message;
+            try {
+                while ((message = reader.readLine()) != null) {
+                    // add clients area
+                    JSONParser parser = new JSONParser();
+                    JSONObject data = (JSONObject) parser.parse(message);
+                    String status = data.get("status").toString();
+                    
+                    if (status.equals("online")) {
+                        String userJson = data.get("user").toString();
+                        User newUser = parseUser(userJson);
+                        
+                        int clientIdx = clients.indexOf(new Client(newUser));
+                        Client newClient = clients.get(clientIdx);
+                        
+                        newClient.setUser(newUser);
+                        newClient.status = Client.ONLINE;
+
+                    }
+                    if (status.equals("matching")) {
+                        String userJson = data.get("matchingCondition").toString();
+                        MatchingCondition mc = parseMatching(userJson);
+                        Client tempClient = new Client(new User(mc.sourceClientId));
+                        
+                        Client actualClient = clients.get(clients.indexOf(tempClient));
+                        actualClient.matchingCondition = mc;
+                        actualClient.status = Client.MATCHING;
+                        
+                        if(mc.condition.equals("premium")){
+                            premiumUsers.add(actualClient);
+                            premiumMatching(actualClient);
+                        }
+                        else{
+                            randomMatching(actualClient);
+                        }
+                        
+                        
+                        //----------------------------------------------------//
+                        // 랜덤매칭
+                        
+                        //----------------------------------------------------//
+                        // 조건 매칭
+                        printQueue();
+//                        Thread t = new Thread(new Matching(actualClient, mc));
+//                        t.start();
+                        
+                  
+
+                        // statusCheck(matchingClients, newClient);
+                        // 매칭 배열 최신화
+                        // matchingCheck(kindsOfmatching, newClient, condition);
+                    } else {
+                        String[] splitMessage = message.split(":");
+                        String clientName = splitMessage[0];
+                        String msg = splitMessage[1];
+
+                        Client client = new Client(new User(clientName));
+
+                        // client.chatting(client.connectedClient, msg);
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
+    
     // --------------------------------------------------------------------------------------------//
     // 메서드
     // --------------------------------------------------------------------------------------------//
-
+    public void randomMatching(Client matchingClient){
+        if(matchingQueue.size() == 0){
+            matchingQueue.add(matchingClient);
+        }
+        else if(matchingQueue.size() == 1){
+            matchingQueue.add(matchingClient);
+            Client targetClient = matchingQueue.poll();
+            Client sourceClient = matchingQueue.poll();
+            
+            
+            matching(sourceClient, targetClient);
+            Debug.log("randomMatching");
+        }
+        else{
+            Debug.log("");
+            printQueue();
+        }
+    }
+    public boolean checkCondition(MatchingCondition matchingCondition, Client client){
+        // age : 20 ~ 24, -1 ~ 24, 25 ~ 100
+        // user age : 25
+        
+        User u = client.getUser();
+        
+        boolean ageCondition = matchingCondition.minAge <= u.getAge() && u.getAge() <= matchingCondition.maxAge;
+        boolean genderConditon = matchingCondition.gender.equals(u.getGender())  ||  matchingCondition.gender.equals("");
+        boolean univConditon = matchingCondition.univ.equals(u.getUniv()) ||  matchingCondition.univ.equals("");
+        boolean majorConditon = matchingCondition.major.equals(u.getMajor())  ||  matchingCondition.major.equals("");
+        return ageCondition &&  genderConditon && univConditon && majorConditon;
+    }
+    
+    public void premiumMatching(Client waitingClient){
+        boolean isMatching = false;
+        Client tempClient = new Client(new User(""));
+        for(Client sourceClient : premiumUsers){
+            if(!matchingQueue.isEmpty()){
+                Client targetClient = matchingQueue.peek();
+                if(checkCondition(sourceClient.matchingCondition, targetClient)){
+                    targetClient = matchingQueue.poll();
+                    matching(sourceClient, targetClient);
+                    Debug.log("premiumMatching !isEmpty");
+                    isMatching = true;
+                    tempClient = sourceClient;
+                    break;
+                }
+            }
+            else{
+                if(checkCondition(sourceClient.matchingCondition, waitingClient)){
+                    Debug.log("sourceClient : " + sourceClient.getUser());
+                    Debug.log("targetClient : " + waitingClient.getUser());
+                    matching(sourceClient, waitingClient);
+                    Debug.log("premiumMatching isEmpty");
+                    tempClient = sourceClient;
+                    isMatching = true;
+    //                premiumUsers.remove(tempClient);
+                    break;
+                }
+            }
+        }
+        
+        if(!isMatching){
+            matchingQueue.add(waitingClient);
+            randomMatching(waitingClient);
+        }
+        else{
+            premiumUsers.remove(tempClient);
+        }
+        
+    }
+    
+    public void matching(Client sourceClient, Client targetClient){
+        sourceClient.connectedClient = targetClient;
+        sourceClient.status = Client.MATCHED;
+        sourceClient.getWriter().println("matched!!! " + sourceClient.connectedClient.getUser());
+        targetClient.connectedClient = sourceClient;
+        targetClient.status = Client.MATCHED;
+        targetClient.getWriter().println("matched!!! " + targetClient.connectedClient.getUser());
+    }
+    
     public User parseUser(String userJson) {
         JSONParser parser = new JSONParser();
         JSONObject data;
@@ -143,79 +296,32 @@ public class SocketManager implements Runnable {
             }
         }
     }
-
-    // --------------------------------------------------------------------------------------------//
-    // ClientHandler (내부 클래스) 인터페이스 (runnable)
-    // --------------------------------------------------------------------------------------------//
-    public class ClientHandler implements Runnable {
-        BufferedReader reader;
-        Socket socket;
-
-        public ClientHandler(Socket clientSocket) {
-            try {
-                socket = clientSocket;
-                InputStreamReader isReader = new InputStreamReader(socket.getInputStream());
-                reader = new BufferedReader(isReader);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        // ----------------------------------------------------------------------------------------//
-        // 클라이언트 소켓이 read 하는 부분
-        // 클라이언트 소켓의 쓰레드가 수행하는 행동
-
-        @Override
-        public void run() {
-            String message;
-            try {
-                while ((message = reader.readLine()) != null) {
-                    // add clients area
-                    JSONParser parser = new JSONParser();
-                    JSONObject data = (JSONObject) parser.parse(message);
-                    String status = data.get("status").toString();
-
-                    if (status.equals("online")) {
-                        String userJson = data.get("user").toString();
-                        User newUser = parseUser(userJson);
-                        
-                        int clientIdx = clients.indexOf(new Client(newUser));
-                        Client newClient = clients.get(clientIdx);
-                        
-                        newClient.setUser(newUser);
-                        newClient.status = Client.ONLINE;
-
-                    }
-                    if (status.equals("matching")) {
-                        String userJson = data.get("matchingCondition").toString();
-                        MatchingCondition mc = parseMatching(userJson);
-                        Client tempClient = new Client(new User(mc.sourceClientId));
-
-                        Client actualClient = clients.get(clients.indexOf(tempClient));
-                        
-                        actualClient.status = Client.MATCHING;
-                        matchingClients.add(actualClient);
-                        
-                        Thread t = new Thread(new Matching(actualClient, mc));
-                        t.start();
-
-                        // statusCheck(matchingClients, newClient);
-                        // 매칭 배열 최신화
-                        // matchingCheck(kindsOfmatching, newClient, condition);
-                    } else {
-                        String[] splitMessage = message.split(":");
-                        String clientName = splitMessage[0];
-                        String msg = splitMessage[1];
-
-                        Client client = new Client(new User(clientName));
-
-                        // client.chatting(client.connectedClient, msg);
-                    }
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    public void printClients() {
+        Debug.log("printClients");
+        for (Client c : clients) {
+            Debug.log("client : " + c.getUser());
         }
     }
+        
+    
+    
+    
+    public void printQueue(){
+        for(Client c : matchingQueue){
+            Debug.log("client : " + c.getUser());
+        }
+    }
+
+    // --------------------------------------------------------------------------------------------//
+    // singleton pattern
+    // --------------------------------------------------------------------------------------------//
+    private static class SingleTonHolder {
+        private static final SocketManager instance = new SocketManager();
+    }
+
+    public static SocketManager getInstance() {
+        return SingleTonHolder.instance;
+    }
+
+
 }

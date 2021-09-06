@@ -1,0 +1,9 @@
+com\sang\generateclient\GenerateClient.class
+Network\ClientSocket$IncomingReader.class
+Data\User.class
+Data\Client.class
+Managers\ClientSocketManager$SingleTonHolder.class
+Managers\GenerateManager.class
+Network\ClientSocket.class
+Managers\ClientSocketManager.class
+Util\Debug.class
